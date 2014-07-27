@@ -1,0 +1,232 @@
+{
+  "title": "Capacity planning",
+  "id": 1,
+  "formatVersion": 2,
+  "ideas": {
+    "1": {
+      "title": "Preliminaries",
+      "id": 2,
+      "ideas": {
+        "1": {
+          "title": "Define the performance requirements using concrete metrics",
+          "id": 5,
+          "ideas": {
+            "1": {
+              "title": "Response time",
+              "id": 6
+            },
+            "2": {
+              "title": "Consumable capacity",
+              "id": 7
+            },
+            "3": {
+              "title": "Peak-driven processing",
+              "id": 8,
+              "ideas": {
+                "1": {
+                  "title": "Workload during peak usage",
+                  "id": 9
+                }
+              }
+            },
+            "4": {
+              "title": "Measured for each component (DBs, web servers etc.)",
+              "id": 10,
+              "attr": {
+                "style": {}
+              }
+            }
+          }
+        },
+        "2": {
+          "title": "Answer basic questions",
+          "id": 11,
+          "ideas": {
+            "1": {
+              "title": "How well is the current infra working?",
+              "id": 12,
+              "ideas": {
+                "1": {
+                  "title": "Use the same metrics",
+                  "id": 14
+                },
+                "2": {
+                  "title": "How many queries per sec (QPS) can the DB server manage on current hardware?",
+                  "id": 22,
+                  "ideas": {
+                    "1": {
+                      "title": "How many QPS can it serve before perf degradation affects UX?",
+                      "id": 23
+                    }
+                  }
+                }
+              }
+            },
+            "2": {
+              "title": "What do you need to maintain acceptable performance?",
+              "id": 15,
+              "ideas": {
+                "1": {
+                  "title": "Decide what will be needed and when.",
+                  "id": 16
+                },
+                "2": {
+                  "title": "If everything is reliable enough, think of a way for it stay so.",
+                  "id": 20
+                }
+              }
+            },
+            "3": {
+              "title": "How can you install and manager resources after you gather what you nedd?",
+              "id": 17,
+              "ideas": {
+                "1": {
+                  "title": "Capacity has to be deployed reliably.",
+                  "id": 18
+                }
+              }
+            },
+            "4": {
+              "title": "Rinse, repeat",
+              "id": 19
+            }
+          }
+        },
+        "3": {
+          "title": "Perform basic approximations",
+          "id": 21,
+          "ideas": {
+            "1": {
+              "title": "Adjust for periodic spikes of activity",
+              "id": 24
+            },
+            "2": {
+              "title": "Subtract some % of headroom",
+              "id": 25
+            },
+            "3": {
+              "title": "Knowing this figure provides additional info",
+              "id": 26,
+              "ideas": {
+                "1": {
+                  "title": "Load that will cause DB failure",
+                  "id": 27,
+                  "ideas": {
+                    "1": {
+                      "title": "Set alert thresholds",
+                      "id": 28
+                    }
+                  }
+                },
+                "2": {
+                  "title": "When to expect to start scaling or descaling DB servers",
+                  "id": 29
+                },
+                "3": {
+                  "title": "When to start sizing  another order of new DB capacity",
+                  "id": 30
+                }
+              }
+            }
+          },
+          "attr": {
+            "position": [
+              113,
+              411,
+              1
+            ],
+            "style": {}
+          }
+        },
+        "4": {
+          "title": "Have meaningful statistics",
+          "id": 31,
+          "ideas": {
+            "1": {
+              "title": "Not enough to know that your web servers are processing X requests per sec",
+              "id": 32
+            },
+            "2": {
+              "title": "Better way",
+              "id": 33,
+              "ideas": {
+                "1": {
+                  "title": "X requests/sec",
+                  "id": 35,
+                  "ideas": {
+                    "1": {
+                      "title": "Y simultaneous users",
+                      "id": 36,
+                      "ideas": {
+                        "1": {
+                          "title": "A% are uploading photos",
+                          "id": 37
+                        },
+                        "2": {
+                          "title": "B% are making comments",
+                          "id": 38
+                        },
+                        "3": {
+                          "title": "C% are browsing the site randomly",
+                          "id": 39
+                        }
+                      }
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Measure such things over time",
+                  "id": 40
+                },
+                "3": {
+                  "title": "Compare and graph the data against user interaction metrics",
+                  "id": 41,
+                  "ideas": {
+                    "1": {
+                      "title": "Eventually yields the cost of providing services to users",
+                      "id": 42,
+                      "ideas": {
+                        "1": {
+                          "title": "Knowing which features tax capacity more",
+                          "id": 43
+                        }
+                      }
+                    }
+                  }
+                },
+                "4": {
+                  "title": "Helpful when requesting hardware",
+                  "id": 45,
+                  "ideas": {
+                    "1": {
+                      "title": "New DB server will allow to serve pages X% faster",
+                      "id": 46,
+                      "ideas": {
+                        "1": {
+                          "title": "That means pageviews and corresp. ad revenues have the chance to go up Y%",
+                          "id": 47
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "ideaIdFrom": 21,
+      "ideaIdTo": 22,
+      "attr": {
+        "style": {
+          "color": "#FF0000",
+          "lineStyle": "dashed"
+        }
+      }
+    }
+  ]
+}
