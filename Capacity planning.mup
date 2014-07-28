@@ -214,6 +214,254 @@
             }
           }
         }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "11": {
+      "title": "Performance vs capacity",
+      "id": 48,
+      "ideas": {
+        "1": {
+          "title": "They affect each other, but have different goals",
+          "id": 49
+        },
+        "2": {
+          "title": "Performace tuning optimizes your existing system",
+          "id": 50
+        },
+        "3": {
+          "title": "Capacity planning determines what does your system need and when",
+          "id": 51,
+          "ideas": {
+            "1": {
+              "title": "Current performance is used as a baseline",
+              "id": 52
+            },
+            "2": {
+              "title": "Should be based on empirical observations of site usage",
+              "id": 53,
+              "ideas": {
+                "1": {
+                  "title": "Benchmarking and perf research have merit, but should not be used as sole capacity indicators",
+                  "id": 54
+                }
+              }
+            },
+            "3": {
+              "title": "Must happen without regard to what you might optimize",
+              "id": 56,
+              "ideas": {
+                "1": {
+                  "title": "The first thing to do here is accept the current performance of your system",
+                  "id": 57
+                }
+              }
+            }
+          }
+        },
+        "4": {
+          "title": "Effects of user-generated content",
+          "id": 59,
+          "ideas": {
+            "1": {
+              "title": "The capacity requirements can grow infinitely",
+              "id": 60
+            },
+            "2": {
+              "title": "It's harder to predict the changes in capacity requiremenets",
+              "id": 61
+            },
+            "3": {
+              "title": "The growth is not entirely under your control",
+              "id": 62
+            },
+            "4": {
+              "title": "Capacity has to be monitored",
+              "id": 63,
+              "ideas": {
+                "1": {
+                  "title": "Business as well as tech sides",
+                  "id": 64
+                },
+                "2": {
+                  "title": "Staying ahead of the growing usage",
+                  "id": 65,
+                  "ideas": {
+                    "1": {
+                      "title": "Collect and analyze usage data - take heed of trends",
+                      "id": 66
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "5": {
+          "title": "Software architecture has a significant impact on capacity as well as performance",
+          "id": 68
+        },
+        "4.5": {
+          "title": "Effects of serving open APIs",
+          "id": 69,
+          "ideas": {
+            "1": {
+              "title": "upward spiralData gets accessed by even more applications, each with its own growth patterns",
+              "id": 70
+            },
+            "2": {
+              "title": "A convenient way of abusing the system",
+              "id": 71
+            },
+            "3": {
+              "title": "TOS have to be provided and enforced",
+              "id": 72
+            }
+          }
+        }
+      },
+      "attr": {
+        "position": [
+          159.5,
+          142.8125,
+          1
+        ],
+        "style": {},
+        "collapsed": true
+      }
+    },
+    "21": {
+      "title": "Process overview",
+      "id": 73,
+      "ideas": {
+        "1": {
+          "title": "Determine the goals",
+          "id": 74
+        },
+        "2": {
+          "title": "Collect metrics and find limits",
+          "id": 75
+        },
+        "3": {
+          "title": "Plot out the trends, make forecasts based on trends and limits",
+          "id": 76
+        },
+        "4": {
+          "title": "Deploy and manage capacity",
+          "id": 77
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "31": {
+      "title": "Setting gaols for capacity",
+      "id": 78,
+      "ideas": {
+        "1": {
+          "title": "Kinds of requirements and measurements",
+          "id": 79,
+          "ideas": {
+            "1": {
+              "title": "Performance",
+              "id": 80,
+              "ideas": {
+                "1": {
+                  "title": "External service monitoring",
+                  "id": 82
+                },
+                "2": {
+                  "title": "Business requirements",
+                  "id": 83
+                },
+                "3": {
+                  "title": "User expectations",
+                  "id": 84
+                }
+              }
+            },
+            "2": {
+              "title": "Capacity",
+              "id": 85,
+              "ideas": {
+                "1": {
+                  "title": "System metrics",
+                  "id": 86
+                },
+                "2": {
+                  "title": "Resource ceilings",
+                  "id": 87
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "-1": {
+      "title": "Tools",
+      "id": 88,
+      "ideas": {
+        "1": {
+          "title": "Performance measurement",
+          "id": 89,
+          "ideas": {
+            "1": {
+              "title": "keynote.com",
+              "id": 90
+            },
+            "2": {
+              "title": "gomez.com",
+              "id": 91
+            },
+            "3": {
+              "title": "Librato",
+              "id": 92
+            },
+            "4": {
+              "title": "Keynote and Gomez are considered 'objective' third parties",
+              "id": 93,
+              "attr": {
+                "style": {}
+              },
+              "ideas": {
+                "1": {
+                  "title": "Their statistics can be used to guide SLAs",
+                  "id": 94
+                }
+              }
+            },
+            "5": {
+              "title": "pingdom.com",
+              "id": 96
+            },
+            "6": {
+              "title": "siteuptime.com",
+              "id": 97
+            },
+            "7": {
+              "title": "alertra.com",
+              "id": 98
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        }
+      },
+      "attr": {
+        "style": {},
+        "collapsed": true
       }
     }
   },
