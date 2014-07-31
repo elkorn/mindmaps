@@ -405,6 +405,10 @@
             }
           }
         }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
       }
     },
     "-1": {
@@ -454,14 +458,143 @@
             }
           },
           "attr": {
-            "collapsed": true,
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "2": {
+          "title": "Server statistics",
+          "id": 99,
+          "attr": {
             "style": {}
+          },
+          "ideas": {
+            "1": {
+              "title": "sar",
+              "id": 100
+            },
+            "2": {
+              "title": "rrdtool",
+              "id": 101
+            }
           }
         }
       },
       "attr": {
         "style": {},
         "collapsed": true
+      }
+    },
+    "-2": {
+      "title": "Examples",
+      "id": 102,
+      "ideas": {
+        "1": {
+          "title": "Scaling one machine to separate DB and Web servers",
+          "id": 103,
+          "ideas": {
+            "1": {
+              "title": "One machine == resource contention between DB and Web server",
+              "id": 104,
+              "ideas": {
+                "1": {
+                  "title": "DB is memory bound",
+                  "id": 106
+                },
+                "2": {
+                  "title": "Web server is CPU bound",
+                  "id": 107
+                },
+                "3": {
+                  "title": "Problems start when either one of them gets loaded heavily",
+                  "id": 108
+                },
+                "4": {
+                  "title": "It's hard to measure how much resources  each daemon takes up",
+                  "id": 110
+                }
+              }
+            },
+            "2": {
+              "title": "Two separate machines",
+              "id": 109,
+              "ideas": {
+                "1": {
+                  "title": "It's good to know how much resources a daemon takes up",
+                  "id": 111,
+                  "ideas": {}
+                },
+                "2": {
+                  "title": "Easier to understand the resource demand characteristics of each node",
+                  "id": 113,
+                  "ideas": {
+                    "1": {
+                      "title": "Buy appropriate hardware",
+                      "id": 112,
+                      "attr": {
+                        "style": {}
+                      }
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Able to answer new questions specifically",
+                  "id": 114,
+                  "ideas": {
+                    "1": {
+                      "title": "How do increases in DB qps affect...",
+                      "id": 115,
+                      "ideas": {
+                        "1": {
+                          "title": "Disk utilization",
+                          "id": 117
+                        },
+                        "2": {
+                          "title": "I/O wait",
+                          "id": 118
+                        },
+                        "3": {
+                          "title": "RAM usage",
+                          "id": 119
+                        },
+                        "4": {
+                          "title": "CPU usage",
+                          "id": 120
+                        }
+                      }
+                    },
+                    "2": {
+                      "title": "How do increases in Web server rps affect...",
+                      "id": 122,
+                      "ideas": {
+                        "1": {
+                          "title": "Disk utilization",
+                          "id": 124
+                        },
+                        "2": {
+                          "title": "I/O wait",
+                          "id": 125
+                        },
+                        "3": {
+                          "title": "RAM usage",
+                          "id": 126
+                        },
+                        "4": {
+                          "title": "CPU usage",
+                          "id": 127
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
