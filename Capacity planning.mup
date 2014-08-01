@@ -36,6 +36,10 @@
                 "style": {}
               }
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
           }
         },
         "2": {
@@ -90,6 +94,10 @@
               "title": "Rinse, repeat",
               "id": 19
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
           }
         },
         "3": {
@@ -212,92 +220,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "attr": {
-        "collapsed": true,
-        "style": {}
-      }
-    },
-    "11": {
-      "title": "Performance vs capacity",
-      "id": 48,
-      "ideas": {
-        "1": {
-          "title": "They affect each other, but have different goals",
-          "id": 49
-        },
-        "2": {
-          "title": "Performace tuning optimizes your existing system",
-          "id": 50
-        },
-        "3": {
-          "title": "Capacity planning determines what does your system need and when",
-          "id": 51,
-          "ideas": {
-            "1": {
-              "title": "Current performance is used as a baseline",
-              "id": 52
-            },
-            "2": {
-              "title": "Should be based on empirical observations of site usage",
-              "id": 53,
-              "ideas": {
-                "1": {
-                  "title": "Benchmarking and perf research have merit, but should not be used as sole capacity indicators",
-                  "id": 54
-                }
-              }
-            },
-            "3": {
-              "title": "Must happen without regard to what you might optimize",
-              "id": 56,
-              "ideas": {
-                "1": {
-                  "title": "The first thing to do here is accept the current performance of your system",
-                  "id": 57
-                }
-              }
-            }
-          }
-        },
-        "4": {
-          "title": "Effects of user-generated content",
-          "id": 59,
-          "ideas": {
-            "1": {
-              "title": "The capacity requirements can grow infinitely",
-              "id": 60
-            },
-            "2": {
-              "title": "It's harder to predict the changes in capacity requiremenets",
-              "id": 61
-            },
-            "3": {
-              "title": "The growth is not entirely under your control",
-              "id": 62
-            },
-            "4": {
-              "title": "Capacity has to be monitored",
-              "id": 63,
-              "ideas": {
-                "1": {
-                  "title": "Business as well as tech sides",
-                  "id": 64
-                },
-                "2": {
-                  "title": "Staying ahead of the growing usage",
-                  "id": 65,
-                  "ideas": {
-                    "1": {
-                      "title": "Collect and analyze usage data - take heed of trends",
-                      "id": 66
-                    }
-                  }
-                }
-              }
-            }
           },
           "attr": {
             "collapsed": true,
@@ -305,34 +227,119 @@
           }
         },
         "5": {
-          "title": "Software architecture has a significant impact on capacity as well as performance",
-          "id": 68
-        },
-        "4.5": {
-          "title": "Effects of serving open APIs",
-          "id": 69,
+          "title": "Performance vs capacity",
+          "id": 48,
           "ideas": {
             "1": {
-              "title": "upward spiralData gets accessed by even more applications, each with its own growth patterns",
-              "id": 70
+              "title": "They affect each other, but have different goals",
+              "id": 49
             },
             "2": {
-              "title": "A convenient way of abusing the system",
-              "id": 71
+              "title": "Performace tuning optimizes your existing system",
+              "id": 50
             },
             "3": {
-              "title": "TOS have to be provided and enforced",
-              "id": 72
+              "title": "Capacity planning determines what does your system need and when",
+              "id": 51,
+              "ideas": {
+                "1": {
+                  "title": "Current performance is used as a baseline",
+                  "id": 52
+                },
+                "2": {
+                  "title": "Should be based on empirical observations of site usage",
+                  "id": 53,
+                  "ideas": {
+                    "1": {
+                      "title": "Benchmarking and perf research have merit, but should not be used as sole capacity indicators",
+                      "id": 54
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Must happen without regard to what you might optimize",
+                  "id": 56,
+                  "ideas": {
+                    "1": {
+                      "title": "The first thing to do here is accept the current performance of your system",
+                      "id": 57
+                    }
+                  }
+                }
+              }
+            },
+            "4": {
+              "title": "Effects of user-generated content",
+              "id": 59,
+              "ideas": {
+                "1": {
+                  "title": "The capacity requirements can grow infinitely",
+                  "id": 60
+                },
+                "2": {
+                  "title": "It's harder to predict the changes in capacity requiremenets",
+                  "id": 61
+                },
+                "3": {
+                  "title": "The growth is not entirely under your control",
+                  "id": 62
+                },
+                "4": {
+                  "title": "Capacity has to be monitored",
+                  "id": 63,
+                  "ideas": {
+                    "1": {
+                      "title": "Business as well as tech sides",
+                      "id": 64
+                    },
+                    "2": {
+                      "title": "Staying ahead of the growing usage",
+                      "id": 65,
+                      "ideas": {
+                        "1": {
+                          "title": "Collect and analyze usage data - take heed of trends",
+                          "id": 66
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "Software architecture has a significant impact on capacity as well as performance",
+              "id": 68
+            },
+            "4.5": {
+              "title": "Effects of serving open APIs",
+              "id": 69,
+              "ideas": {
+                "1": {
+                  "title": "upward spiralData gets accessed by even more applications, each with its own growth patterns",
+                  "id": 70
+                },
+                "2": {
+                  "title": "A convenient way of abusing the system",
+                  "id": 71
+                },
+                "3": {
+                  "title": "TOS have to be provided and enforced",
+                  "id": 72
+                }
+              }
             }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
           }
         }
       },
       "attr": {
-        "position": [
-          159.5,
-          142.8125,
-          1
-        ],
         "style": {},
         "collapsed": true
       }
@@ -407,6 +414,152 @@
         }
       },
       "attr": {
+        "style": {},
+        "collapsed": true
+      }
+    },
+    "33": {
+      "title": "Scaling",
+      "id": 147,
+      "ideas": {
+        "1": {
+          "title": "Horizontal",
+          "id": 148,
+          "ideas": {
+            "1": {
+              "title": "Adding new nodes",
+              "id": 149
+            },
+            "2": {
+              "title": "Disadvantages",
+              "id": 156,
+              "ideas": {
+                "1": {
+                  "title": "Increasing potential failure points",
+                  "id": 157
+                },
+                "2": {
+                  "title": "Synchronization challenges",
+                  "id": 158
+                },
+                "3": {
+                  "title": "Operational complexity",
+                  "id": 159
+                }
+              },
+              "attr": {
+                "style": {},
+                "collapsed": true
+              }
+            }
+          }
+        },
+        "2": {
+          "title": "Vertical",
+          "id": 150,
+          "ideas": {
+            "1": {
+              "title": "Adding resources to an existing node",
+              "id": 151
+            },
+            "2": {
+              "title": "Disadvantages",
+              "id": 153,
+              "ideas": {
+                "1": {
+                  "title": "Relying solely on it causes the costs to rise dramatically over time",
+                  "id": 154
+                },
+                "2": {
+                  "title": "SPOF risk",
+                  "id": 155
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "3": {
+          "title": "Diagonal",
+          "id": 152,
+          "ideas": {
+            "1": {
+              "title": "Mix of horizontal and vertical",
+              "id": 160
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "4": {
+          "title": "It's also possible to downscale on one axis, while upscaling on another",
+          "id": 161,
+          "ideas": {
+            "1": {
+              "title": "Why?",
+              "id": 162,
+              "ideas": {
+                "1": {
+                  "title": "Running costs",
+                  "id": 163,
+                  "ideas": {
+                    "1": {
+                      "title": "Stronger machines don't strain so much - can use power more efficiently",
+                      "id": 167
+                    },
+                    "2": {
+                      "title": "Rack space",
+                      "id": 168
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Node's role becomes more specific",
+                  "id": 164
+                },
+                "3": {
+                  "title": "Price to benefit ratio",
+                  "id": 166
+                }
+              }
+            }
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "34": {
+      "title": "Disaster recovery",
+      "id": 169,
+      "ideas": {
+        "1": {
+          "title": "Saving business operations after a total outage",
+          "id": 171,
+          "ideas": {
+            "1": {
+              "title": "Serve traffic under failure conditions",
+              "id": 172
+            }
+          }
+        },
+        "2": {
+          "title": "Part of Business Continuity Planning\nhttps://www.google.pl/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CCEQFjAA&url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FBusiness_continuity_planning&ei=rPrbU7nPB8bI0QX7mICwDw&usg=AFQjCNEpCMD3OPZBKCshZFhkBpMVU_g6Dg&sig2=eBQddPUPudJMHLGis9GZrA&bvm=bv.72197243,d.d2k\n",
+          "id": 175
+        },
+        "3": {
+          "title": "Usually the idea is to deploy geographically dispersed failover instances",
+          "id": 176
+        }
+      },
+      "attr": {
         "collapsed": true,
         "style": {}
       }
@@ -478,11 +631,36 @@
               "id": 101
             }
           }
+        },
+        "3": {
+          "title": "Metric collection",
+          "id": 189,
+          "ideas": {
+            "1": {
+              "title": "cacti.net",
+              "id": 191
+            },
+            "2": {
+              "title": "munin.projects.linpro.no",
+              "id": 192
+            },
+            "3": {
+              "title": "ganglia.info",
+              "id": 193
+            },
+            "4": {
+              "title": "hyperic.com",
+              "id": 194
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
         }
       },
       "attr": {
-        "style": {},
-        "collapsed": true
+        "style": {}
       }
     },
     "-2": {
@@ -592,6 +770,163 @@
                   }
                 }
               }
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "-3": {
+      "title": "Speficity of requirements",
+      "id": 128,
+      "ideas": {
+        "1.5": {
+          "title": "It is only sensible to  procure hardware suitable for its role",
+          "id": 135,
+          "attr": {
+            "style": {},
+            "collapsed": true
+          },
+          "ideas": {
+            "1": {
+              "title": "There is no one-size-fits-all solution",
+              "id": 136
+            },
+            "2": {
+              "title": "Examples",
+              "id": 137,
+              "ideas": {
+                "1": {
+                  "title": "Your DB server will be disk-bound (or memory-bound)",
+                  "id": 129,
+                  "ideas": {
+                    "1": {
+                      "title": "Doesn't make sense to buy quad-core CPUs",
+                      "id": 130
+                    },
+                    "2": {
+                      "title": "Invest in disk spindles and memory",
+                      "id": 131
+                    }
+                  },
+                  "attr": {
+                    "style": {},
+                    "collapsed": true
+                  }
+                },
+                "2": {
+                  "title": "Web server will be I/O bound",
+                  "id": 133,
+                  "ideas": {
+                    "1": {
+                      "title": "Invest in CPU power",
+                      "id": 134
+                    }
+                  },
+                  "attr": {
+                    "style": {},
+                    "collapsed": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "2.5": {
+          "title": "Resource ceilings",
+          "id": 138,
+          "ideas": {
+            "1": {
+              "title": "Ceiling is the critical level of a particular resource that cannot be crossed without failure",
+              "id": 139,
+              "ideas": {
+                "1": {
+                  "title": "Disk throughput",
+                  "id": 140
+                },
+                "2": {
+                  "title": "CPU",
+                  "id": 141
+                },
+                "3": {
+                  "title": "RAM",
+                  "id": 142
+                },
+                "4": {
+                  "title": "Network",
+                  "id": 143
+                }
+              }
+            },
+            "2": {
+              "title": "Ceilings should be determined for each piece of architecture",
+              "id": 144
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "-6": {
+      "title": "Measurement",
+      "id": 179,
+      "ideas": {
+        "1": {
+          "title": "Without a way to measure current capacity, you're only guessing",
+          "id": 180
+        },
+        "2": {
+          "title": "Requirements for a good tool",
+          "id": 182,
+          "ideas": {
+            "1": {
+              "title": "Record and store data over time",
+              "id": 183
+            },
+            "2": {
+              "title": "Build custom metrics",
+              "id": 184
+            },
+            "3": {
+              "title": "Compare metrics from various sources",
+              "id": 185
+            },
+            "4": {
+              "title": "Import and export metrics",
+              "id": 186
+            }
+          },
+          "attr": {
+            "position": [
+              135.5,
+              97.5,
+              1
+            ],
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "1.5": {
+          "title": "Measuring is an additional task asked from the server",
+          "id": 187,
+          "ideas": {
+            "1": {
+              "title": "It is a non-negligible overhead ",
+              "id": 188
             }
           }
         }
