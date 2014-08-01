@@ -627,7 +627,7 @@
               "id": 100
             },
             "2": {
-              "title": "rrdtool",
+              "title": "rrdtool.org",
               "id": 101
             }
           }
@@ -651,11 +651,25 @@
             "4": {
               "title": "hyperic.com",
               "id": 194
+            },
+            "5": {
+              "title": "These are frontends to rrdtool",
+              "id": 196
+            },
+            "6": {
+              "title": "MRTG",
+              "id": 216,
+              "ideas": {
+                "1": {
+                  "title": "Built with SNMP in mind",
+                  "id": 217
+                }
+              }
             }
           },
           "attr": {
-            "collapsed": true,
-            "style": {}
+            "style": {},
+            "collapsed": true
           }
         }
       },
@@ -920,6 +934,166 @@
             "collapsed": true
           }
         },
+        "3": {
+          "title": "Metrics",
+          "id": 201,
+          "ideas": {
+            "1": {
+              "title": "Logs",
+              "id": 202,
+              "ideas": {
+                "1": {
+                  "title": "A way to inject metrics into measurement systems",
+                  "id": 203
+                },
+                "2": {
+                  "title": "Creating custom metrics",
+                  "id": 204
+                }
+              }
+            },
+            "2": {
+              "title": "Network",
+              "id": 205,
+              "ideas": {
+                "1": {
+                  "title": "It has to be measured to make sure traffic is flowing",
+                  "id": 206
+                },
+                "2": {
+                  "title": "Sanity check",
+                  "id": 208,
+                  "ideas": {
+                    "1": {
+                      "title": "Gather in/out network usage from your outward-facing server",
+                      "id": 209
+                    },
+                    "2": {
+                      "title": "Compare them with the bill you receive from your hosting provider",
+                      "id": 210
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "3": {
+                  "title": "Infrastructure",
+                  "id": 211,
+                  "ideas": {
+                    "1": {
+                      "title": "Handling a lot of requests through muliple servers causes  strain on switches",
+                      "id": 212
+                    },
+                    "2": {
+                      "title": "It is worth to measure SNMP metrics on routers, switches etc.",
+                      "id": 213
+                    }
+                  }
+                },
+                "0.5": {
+                  "title": "It is the plumbing for servers",
+                  "id": 207,
+                  "attr": {
+                    "style": {}
+                  }
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "4": {
+          "title": "Load balancing",
+          "id": 218,
+          "ideas": {
+            "1": {
+              "title": "Usually at the front  ",
+              "id": 219,
+              "ideas": {
+                "1": {
+                  "title": "Can  be also used to spread load on DBs, app servers, data centers, mail servers and whatever",
+                  "id": 222,
+                  "attr": {
+                    "style": {}
+                  }
+                }
+              }
+            },
+            "2": {
+              "title": "Traffic cop to web servers responding to browser requests",
+              "id": 220
+            },
+            "3": {
+              "title": "Not all situations call for load balancing",
+              "id": 224,
+              "ideas": {
+                "1": {
+                  "title": "Not all algorithms are appropriate even if LB is needed",
+                  "id": 225,
+                  "ideas": {
+                    "1": {
+                      "title": "E.g. 'least connections' scheme on a DB",
+                      "id": 226,
+                      "ideas": {
+                        "1": {
+                          "title": "This scheme is OK for web servers",
+                          "id": 227,
+                          "ideas": {
+                            "1": {
+                              "title": "The requests are short-lived",
+                              "id": 228
+                            },
+                            "2": {
+                              "title": "Responses don't vary much in size or latency",
+                              "id": 229
+                            }
+                          }
+                        },
+                        "2": {
+                          "title": "It fails for DBs",
+                          "id": 230,
+                          "ideas": {
+                            "1": {
+                              "title": "Queries are of different size and time to process",
+                              "id": 231
+                            },
+                            "2": {
+                              "title": "Results can be quite large",
+                              "id": 232
+                            }
+                          }
+                        }
+                      },
+                      "attr": {
+                        "collapsed": true,
+                        "style": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "5": {
+          "title": "A good exercise",
+          "id": 233,
+          "ideas": {
+            "1": {
+              "title": "Spend some time correlating business and financial data to the system and application metrics you're tracking",
+              "id": 234
+            }
+          }
+        },
         "1.5": {
           "title": "Measuring is an additional task asked from the server",
           "id": 187,
@@ -928,8 +1102,47 @@
               "title": "It is a non-negligible overhead ",
               "id": 188
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
           }
         }
+      },
+      "attr": {
+        "style": {}
+      }
+    },
+    "-7": {
+      "title": "Terms",
+      "id": 197,
+      "ideas": {
+        "1": {
+          "title": "SNMP",
+          "id": 198,
+          "ideas": {
+            "1": {
+              "title": "Simple Network Mgmt Protocol",
+              "id": 199,
+              "ideas": {}
+            },
+            "2": {
+              "title": "A common mechanism for gathering metrics",
+              "id": 200,
+              "attr": {
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
       }
     }
   },
