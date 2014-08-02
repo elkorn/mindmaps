@@ -674,7 +674,8 @@
         }
       },
       "attr": {
-        "style": {}
+        "style": {},
+        "collapsed": true
       }
     },
     "-2": {
@@ -1092,6 +1093,132 @@
               "title": "Spend some time correlating business and financial data to the system and application metrics you're tracking",
               "id": 234
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "6": {
+          "title": "What to measure?",
+          "id": 235,
+          "ideas": {
+            "1": {
+              "title": "Storage capacity",
+              "id": 237,
+              "ideas": {
+                "1": {
+                  "title": "Max capacity of the storage media",
+                  "id": 238
+                },
+                "2": {
+                  "title": "The rate with which data can be accessed",
+                  "id": 239
+                },
+                "3": {
+                  "title": "Consumption rate/",
+                  "id": 240,
+                  "ideas": {
+                    "1": {
+                      "title": "Growth in data volume measured against a specific length of time",
+                      "id": 241,
+                      "ideas": {}
+                    },
+                    "2": {
+                      "title": "When will I run out of disk space?",
+                      "id": 243
+                    }
+                  },
+                  "attr": {
+                    "position": [
+                      151.5,
+                      135.75,
+                      1
+                    ],
+                    "style": {},
+                    "collapsed": true
+                  }
+                },
+                "4": {
+                  "title": "I/O patterns",
+                  "id": 245,
+                  "ideas": {
+                    "1": {
+                      "title": "How much you're reading/writing",
+                      "id": 246
+                    },
+                    "2": {
+                      "title": "How long the CPU has to wait for read/write to finish",
+                      "id": 247
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "2": {
+              "title": "Web server capacity",
+              "id": 248,
+              "ideas": {
+                "1": {
+                  "title": "Web server capacity planning is peak-driven and therefore elastic",
+                  "id": 249,
+                  "ideas": {
+                    "1": {
+                      "title": "Locate the peaks and analyze what's going on",
+                      "id": 250
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Load testing",
+                  "id": 251,
+                  "ideas": {
+                    "1": {
+                      "title": "Replaying requests coming to the server",
+                      "id": 253,
+                      "ideas": {
+                        "1": {
+                          "title": "Httperf",
+                          "id": 254,
+                          "ideas": {
+                            "1": {
+                              "title": "Autobench",
+                              "id": 258
+                            }
+                          }
+                        },
+                        "2": {
+                          "title": "Siege",
+                          "id": 255
+                        }
+                      }
+                    },
+                    "2": {
+                      "title": "Be careful, increase the load slowly",
+                      "id": 256,
+                      "ideas": {
+                        "1": {
+                          "title": "Especially in a single-machine setting",
+                          "id": 257
+                        }
+                      }
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Load balancing helps with lightening web server load",
+                  "id": 252
+                }
+              }
+            }
           }
         },
         "1.5": {
@@ -1135,13 +1262,11 @@
             }
           },
           "attr": {
-            "style": {},
-            "collapsed": true
+            "style": {}
           }
         }
       },
       "attr": {
-        "collapsed": true,
         "style": {}
       }
     }
