@@ -671,11 +671,33 @@
             "style": {},
             "collapsed": true
           }
+        },
+        "4": {
+          "title": "Curve fitting",
+          "id": 305,
+          "ideas": {
+            "1": {
+              "title": "fityk",
+              "id": 306,
+              "ideas": {
+                "1": {
+                  "title": "cfityk",
+                  "id": 307
+                }
+              }
+            },
+            "2": {
+              "title": "Excel",
+              "id": 309
+            }
+          },
+          "attr": {
+            "style": {}
+          }
         }
       },
       "attr": {
-        "style": {},
-        "collapsed": true
+        "style": {}
       }
     },
     "-2": {
@@ -794,7 +816,6 @@
         }
       },
       "attr": {
-        "collapsed": true,
         "style": {}
       }
     },
@@ -1217,8 +1238,67 @@
                   "title": "Load balancing helps with lightening web server load",
                   "id": 252
                 }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
               }
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "7": {
+          "title": "Establish resource ceilings",
+          "id": 259,
+          "ideas": {
+            "1": {
+              "title": "The 'red line' situations above which are considered out of the ordinary",
+              "id": 260
+            },
+            "2": {
+              "title": "Increase the load on the resource and see which resource metrics change",
+              "id": 261
+            },
+            "3": {
+              "title": "See when the time-to-serve begins to wane in terms of resource usage",
+              "id": 262,
+              "ideas": {
+                "1": {
+                  "title": "This is your red line",
+                  "id": 263
+                }
+              }
+            },
+            "4": {
+              "title": "Sometimes effective ceiling measurements are not straightforward.",
+              "id": 298,
+              "ideas": {
+                "1": {
+                  "title": "E.g. database queries for users with 100s of 1000s of photos are the most taxing",
+                  "id": 299,
+                  "ideas": {
+                    "1": {
+                      "title": "Measure a user/photo ratio",
+                      "id": 300
+                    },
+                    "2": {
+                      "title": "Shard user's photos among DBs",
+                      "id": 301
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "style": {}
           }
         },
         "1.5": {
@@ -1237,7 +1317,8 @@
         }
       },
       "attr": {
-        "style": {}
+        "style": {},
+        "collapsed": true
       }
     },
     "-7": {
@@ -1267,7 +1348,497 @@
         }
       },
       "attr": {
-        "style": {}
+        "style": {},
+        "collapsed": true
+      }
+    },
+    "-6.5": {
+      "title": "Prediction",
+      "id": 264,
+      "ideas": {
+        "1": {
+          "title": "Knowing your ceilings and having charted the resource usage growth, you're able to predict when new hardware has to be procured.",
+          "id": 267,
+          "ideas": {
+            "1": {
+              "title": "Use curve fitting based on the existing data.",
+              "id": 276,
+              "ideas": {
+                "1": {
+                  "title": "Maybe as simple as 'add a trend line' in Excel",
+                  "id": 277
+                },
+                "2": {
+                  "title": "Check different types of curves",
+                  "id": 278,
+                  "ideas": {
+                    "1": {
+                      "title": "You might discover that something that  looked linear, is actually accelerating.",
+                      "id": 279
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "3": {
+                  "title": "Get the value of R-squared",
+                  "id": 280,
+                  "ideas": {
+                    "1": {
+                      "title": "R^2 is the coefficient of determination",
+                      "id": 281
+                    },
+                    "2": {
+                      "title": "The closer it is to 1, the more reliable the fitted curve.",
+                      "id": 282,
+                      "ideas": {
+                        "1": {
+                          "title": "Forecasts with R^2>0.85 can be deemed as reasonably reliable.",
+                          "id": 284
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "4": {
+                  "title": "Stay away from polynomials with order > 2",
+                  "id": 285,
+                  "ideas": {
+                    "1": {
+                      "title": "You might get nice R^2 for your current data set.",
+                      "id": 286
+                    },
+                    "2": {
+                      "title": "The curve will most likely be wildly inaccurate as the data changes though.",
+                      "id": 287
+                    },
+                    "3": {
+                      "title": "Prefer pragmatism over elegance.",
+                      "id": 288
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "2": {
+              "title": "Having e.g. your current available disk space and a fitted curve, you know the date when you run out of disk space.",
+              "id": 290,
+              "ideas": {
+                "1": {
+                  "title": "Plan procurement.",
+                  "id": 291
+                },
+                "2": {
+                  "title": "Do not procure too early.",
+                  "id": 292,
+                  "ideas": {
+                    "1": {
+                      "title": "Remember about Moore's law.",
+                      "id": 293,
+                      "ideas": {
+                        "1": {
+                          "title": "The equipment gets cheaper and more efficient over time.",
+                          "id": 295
+                        },
+                        "2": {
+                          "title": "Your wasting time, space and money by stockpiling 'spare' infrastructure.",
+                          "id": 296
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "2": {
+          "title": "Knowing the usage patterns of your website is beneficial",
+          "id": 269,
+          "ideas": {
+            "1": {
+              "title": "Don't schedule maintenance on high-usage days",
+              "id": 270
+            },
+            "2": {
+              "title": "When deploying new code, pay close attention to how it affected your measurements on the next high-usage day",
+              "id": 271
+            },
+            "3": {
+              "title": "Product mgmt might want to launch new features based on low or high traffic periods",
+              "id": 272,
+              "ideas": {
+                "1": {
+                  "title": "Make sure everyone knows where the metrics are located and what they mean",
+                  "id": 273
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "3": {
+          "title": "Automate the forecasts.",
+          "id": 302,
+          "ideas": {
+            "1": {
+              "title": "Create a forecasting dashboard.",
+              "id": 303
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "4": {
+          "title": "Safety factors",
+          "id": 310,
+          "ideas": {
+            "1": {
+              "title": "Mark the red line so that you have enough headroom to 100% usage above to accomodate spikes.",
+              "id": 311
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "5": {
+          "title": "Long-term trends",
+          "id": 349,
+          "ideas": {
+            "1": {
+              "title": "When your website is used in the US only - there will be specific usage patterns e.g. according to timezones",
+              "id": 350,
+              "ideas": {
+                "1": {
+                  "title": "Geographically spaced infrastructure will receive different usage profiles",
+                  "id": 351
+                }
+              }
+            },
+            "2": {
+              "title": "The patterns will change when scaling out world-wide.",
+              "id": 352
+            },
+            "3": {
+              "title": "You might want to factor different usage patterns in.",
+              "id": 353,
+              "ideas": {
+                "1": {
+                  "title": "Example: users from Poland have more photos but click more slowly.",
+                  "id": 354,
+                  "ideas": {
+                    "1": {
+                      "title": "Focus on the DB infrastructure in the  PL shard.",
+                      "id": 355
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "6": {
+          "title": "A process, not a one-time event.",
+          "id": 356,
+          "ideas": {
+            "1": {
+              "title": "The plan has to be iterated upon and re-calibrated every so often.",
+              "id": 357
+            },
+            "2": {
+              "title": "This is to maintain a reliable state of knowledge.",
+              "id": 358
+            },
+            "3": {
+              "title": "Management needs to be up to date on that.",
+              "id": 359
+            }
+          }
+        }
+      },
+      "attr": {
+        "style": {},
+        "collapsed": true
+      }
+    },
+    "-6.75": {
+      "title": "Procurement",
+      "id": 312,
+      "ideas": {
+        "1": {
+          "title": "When planning procurement, take into account the time it will take.",
+          "id": 313
+        },
+        "2": {
+          "title": "Procurement process",
+          "id": 314,
+          "ideas": {
+            "1": {
+              "title": "Find out what you need.",
+              "id": 315,
+              "ideas": {
+                "1": {
+                  "title": "Do not stockpile!",
+                  "id": 328
+                },
+                "2": {
+                  "title": "Know how much load the current capacity can handle.",
+                  "id": 329
+                },
+                "3": {
+                  "title": "Create appropriate predictions.",
+                  "id": 330
+                }
+              }
+            },
+            "2": {
+              "title": "Make justifications.",
+              "id": 316,
+              "ideas": {
+                "1": {
+                  "title": "Make sure everybody understands the procurement.",
+                  "id": 331,
+                  "ideas": {
+                    "1": {
+                      "title": "Why is it needed?",
+                      "id": 332
+                    },
+                    "2": {
+                      "title": "What are the consequences if it does not get done?",
+                      "id": 333
+                    },
+                    "3": {
+                      "title": "Why will we need to do it again?",
+                      "id": 334
+                    }
+                  }
+                }
+              }
+            },
+            "3": {
+              "title": "Get approval.",
+              "id": 317
+            },
+            "4": {
+              "title": "Get quotes from vendors.",
+              "id": 318,
+              "ideas": {
+                "1": {
+                  "title": "Take into account discounts, customer service, delivery times etc.",
+                  "id": 335
+                }
+              }
+            },
+            "5": {
+              "title": "Order equipment.",
+              "id": 319,
+              "ideas": {
+                "1": {
+                  "title": "Can the order be tracked?",
+                  "id": 336
+                },
+                "2": {
+                  "title": "Do you have somebody to contact in case you want to know where it is?",
+                  "id": 337
+                },
+                "3": {
+                  "title": "Does the data center know that the machines are coming and have to be received?",
+                  "id": 338
+                }
+              }
+            },
+            "6": {
+              "title": "Equipment arrives.",
+              "id": 320
+            },
+            "7": {
+              "title": "Physical installation",
+              "id": 321,
+              "ideas": {}
+            },
+            "8": {
+              "title": "Software installation",
+              "id": 322,
+              "ideas": {
+                "1": {
+                  "title": "This should be done  automatically.",
+                  "id": 323
+                },
+                "2": {
+                  "title": "OS installation",
+                  "id": 324
+                },
+                "3": {
+                  "title": "Application installation",
+                  "id": 325
+                },
+                "4": {
+                  "title": "Configuration installation",
+                  "id": 326
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "9": {
+              "title": "Testing",
+              "id": 327,
+              "ideas": {
+                "1": {
+                  "title": "QA - make sure everything works",
+                  "id": 341
+                }
+              }
+            },
+            "10": {
+              "title": "Deployment",
+              "id": 340,
+              "ideas": {
+                "1": {
+                  "title": "Use the same metrics and predictions to establish the state of the new capacity.",
+                  "id": 342,
+                  "ideas": {
+                    "1": {
+                      "title": "Try to identify any new bottlenecks.",
+                      "id": 345,
+                      "ideas": {
+                        "1": {
+                          "title": "Example: DB queries now take milliseconds instead of seconds.",
+                          "id": 346,
+                          "ideas": {
+                            "1": {
+                              "title": "The web server has to process more requests in the same time.",
+                              "id": 347
+                            },
+                            "0.5": {
+                              "title": "Users don't have to wait as long as before and start clicking on the website faster.",
+                              "id": 348
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        }
+      },
+      "attr": {
+        "style": {},
+        "collapsed": true
+      }
+    },
+    "-6.875": {
+      "title": "Deployment",
+      "id": 360,
+      "ideas": {
+        "1": {
+          "title": "Automated installation tools",
+          "id": 362,
+          "ideas": {
+            "1": {
+              "title": "Package-based",
+              "id": 363
+            },
+            "2": {
+              "title": "Gold-client",
+              "id": 364
+            }
+          }
+        },
+        "2": {
+          "title": "Installation process",
+          "id": 365,
+          "ideas": {
+            "1": {
+              "title": "Set up a network boot server",
+              "id": 366,
+              "ideas": {
+                "1": {
+                  "title": "This requires some manual configuration.",
+                  "id": 373
+                },
+                "2": {
+                  "title": "DHCP config",
+                  "id": 375,
+                  "ideas": {
+                    "1": {
+                      "title": "MAC",
+                      "id": 376
+                    },
+                    "2": {
+                      "title": "IP",
+                      "id": 377
+                    },
+                    "3": {
+                      "title": "hostname",
+                      "id": 378
+                    }
+                  }
+                }
+              }
+            },
+            "2": {
+              "title": "PXE firmware on the client requests its environment via DHCP.",
+              "id": 367,
+              "ideas": {
+                "1": {
+                  "title": "PXE - Pre-boot Execution Environment",
+                  "id": 368
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "The client fetches the boot image via TFTP.",
+              "id": 369,
+              "ideas": {
+                "1": {
+                  "title": "Kernel + ramdisk",
+                  "id": 370
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            }
+          }
+        }
       }
     }
   },
