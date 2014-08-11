@@ -1,0 +1,264 @@
+{
+  "title": "Effective Akka",
+  "id": 1,
+  "formatVersion": 2,
+  "ideas": {
+    "1": {
+      "title": "Actor application types",
+      "id": 2,
+      "ideas": {
+        "1": {
+          "title": "Domain-driven",
+          "id": 3,
+          "ideas": {
+            "1": {
+              "title": "Actors live and die only to represent the state of the domain",
+              "id": 4,
+              "ideas": {
+                "1": {
+                  "title": "Respond to external events and morph to meet changes in the modelled world",
+                  "id": 13
+                },
+                "2": {
+                  "title": "Domain-driven messages are \"facts\".",
+                  "id": 14
+                }
+              }
+            },
+            "2": {
+              "title": "Frequently used when information is provided to multiple other servers in an eventually consistent manner",
+              "id": 5
+            },
+            "3": {
+              "title": "Due to their light weight, actors allow  live real-time domain modelling",
+              "id": 6,
+              "ideas": {
+                "1": {
+                  "title": "Each actor in itself constitutes a 400B heap space footprint",
+                  "id": 8
+                }
+              }
+            },
+            "4": {
+              "title": "Fault tolerance of actors is beneficial",
+              "id": 9,
+              "ideas": {
+                "1": {
+                  "title": "The hierarchy has to be appropriately nested",
+                  "id": 10
+                },
+                "2": {
+                  "title": "Well-defined regions of handling specific errors",
+                  "id": 11
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "2": {
+          "title": "Work distribution",
+          "id": 15,
+          "ideas": {
+            "1": {
+              "title": "Actors are stateless",
+              "id": 16,
+              "ideas": {
+                "1": {
+                  "title": "Messages contain state",
+                  "id": 18
+                },
+                "2": {
+                  "title": "An actor performs some operations on received state and responds with a new instance of the changed state",
+                  "id": 19
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "2": {
+              "title": "Actors are workers",
+              "id": 21,
+              "ideas": {
+                "1": {
+                  "title": "They are meant for parallelization or separation of dangerous tasks",
+                  "id": 22
+                },
+                "2": {
+                  "title": "Data to act upon is always provided to them",
+                  "id": 23
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "Routers and routees",
+              "id": 24,
+              "ideas": {
+                "1": {
+                  "title": "Multiple instances of one actor type",
+                  "id": 25,
+                  "ideas": {
+                    "1": {
+                      "title": "Work is being distributed amongst the instances",
+                      "id": 26
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Routing strategies",
+                  "id": 27,
+                  "ideas": {
+                    "1": {
+                      "title": "Random",
+                      "id": 28,
+                      "ideas": {
+                        "1": {
+                          "title": "No specific guarantees of work distribution",
+                          "id": 31
+                        }
+                      }
+                    },
+                    "2": {
+                      "title": "Round robin",
+                      "id": 29,
+                      "ideas": {
+                        "1": {
+                          "title": "Even work distirbution",
+                          "id": 30
+                        }
+                      }
+                    },
+                    "3": {
+                      "title": "Smallest mailbox",
+                      "id": 32,
+                      "ideas": {
+                        "1": {
+                          "title": "This is not the best solution",
+                          "id": 33
+                        },
+                        "2": {
+                          "title": "The actor having the smallest mailbox may be the one who takes the longest to process messages",
+                          "id": 34
+                        },
+                        "3": {
+                          "title": "Useful for routees that handle the exact same work of blocking nature",
+                          "id": 35,
+                          "ideas": {
+                            "1": {
+                              "title": "Example: I/O bound operations with varying latencies",
+                              "id": 36
+                            }
+                          }
+                        },
+                        "4": {
+                          "title": "This strategy does not work for remote actors",
+                          "id": 37,
+                          "ideas": {
+                            "1": {
+                              "title": "Remote actor mailbox size is not known",
+                              "id": 38
+                            }
+                          }
+                        }
+                      },
+                      "attr": {
+                        "collapsed": true,
+                        "style": {}
+                      }
+                    },
+                    "4": {
+                      "title": "Broadcast",
+                      "id": 39,
+                      "ideas": {
+                        "1": {
+                          "title": "USeful for distributiong work to multiple nodes handling different tasks",
+                          "id": 40,
+                          "ideas": {
+                            "1": {
+                              "title": "In case an error occurs, other actors may perform the work correctly",
+                              "id": 41
+                            }
+                          }
+                        },
+                        "2": {
+                          "title": "Theoretically, mailboxes of the actors should be of equal size",
+                          "id": 42,
+                          "ideas": {
+                            "1": {
+                              "title": "In practice, this depends on the dispatcher fairness",
+                              "id": 43
+                            }
+                          }
+                        },
+                        "3": {
+                          "title": "Dispatchers",
+                          "id": 44,
+                          "ideas": {
+                            "1": {
+                              "title": "ScaterGatherFirstCompletedOf",
+                              "id": 45,
+                              "ideas": {
+                                "1": {
+                                  "title": "Useful for when resources are not a problem and the work has to be done as fast as possible",
+                                  "id": 46
+                                }
+                              }
+                            },
+                            "2": {
+                              "title": "Consistent hash routing",
+                              "id": 47,
+                              "ideas": {
+                                "1": {
+                                  "title": "Useful for when specific tasks should always go to concrete actors",
+                                  "id": 48
+                                }
+                              }
+                            },
+                            "3": {
+                              "title": "BalancingDispatcher is deprecated",
+                              "id": 51
+                            }
+                          },
+                          "attr": {
+                            "collapsed": true,
+                            "style": {}
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "style": {},
+                "collapsed": true
+              }
+            },
+            "4": {
+              "title": "Messages are \"commands\"",
+              "id": 52
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    }
+  },
+  "links": []
+}
