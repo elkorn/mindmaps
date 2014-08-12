@@ -260,7 +260,7 @@
       }
     },
     "11": {
-      "title": "Usage actor patterns",
+      "title": "Actor usage patterns",
       "id": 53,
       "ideas": {
         "1": {
@@ -287,6 +287,168 @@
             "1": {
               "title": "A thread cannot be serialized",
               "id": 57
+            }
+          }
+        },
+        "3": {
+          "title": "Cameo",
+          "id": 58,
+          "ideas": {
+            "1": {
+              "title": "Basically, this is the Extra pattern, but the actor is not anonymous",
+              "id": 60,
+              "ideas": {
+                "1": {
+                  "title": "Extra example migrated to Cameo",
+                  "id": 65,
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "import scala.concurrent.ExecutionContext<div>import scala.concurrent.duration._</div><div>import org.jamieallen.efectiveakka.common._</div><div>import akka.actor._</div><div>import akka.event.LoggingReceive</div><div><br></div><div>object AccountBalanceResponseHandler {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case object AccountRetrievalTimeout</div><div><br></div><div>// Factory method for actor properties</div><div>def props(savingsAccount: ActorRef, checnkingAccounts: ActorRef, moneyMarketAccounts: ActorRef, originalSender: ActorRef): Props = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>Props(new AccountBalanceResponseHandler(sacingsAccounts, checkingAccounts, moneyMarketAccounts, originalSender))</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div><div><br></div><div>class AccountBalanceResponseHandler(savingsAccounts: ActorRef, checkingAccounts: ActorRef, moneyMarketAccounts: ActorRef, originalSender: ActorRef)</div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">extends Actor with ActorLogging {</blockquote></blockquote></blockquote></blockquote></blockquote></blockquote>import AccountBalanceResponseHandler._</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">var checkingBalances, savingsBalances, mmBalances: Option[List[(Long, BigDecimal)]] = None</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><br></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">def receive = LoggingReceive {</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">case CheckingAccountBalances(balances) =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug....</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">checkingBalances = balances</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">collectBalances</blockquote>case SavingsAccountBalances(balances) =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug...</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">savingsBalances = balances</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">collectBalances</blockquote>case MoneyMarketAccountBalances(balances) =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug...</blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">mmBalances = balances</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">collectBalances</blockquote>case AccountRetrievalTimeout =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug...</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">sendResponseAndShutdown(AccountRetrievalTimeout)</blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"></blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">}</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><br></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">def collectBalances = (checkingBalances, savingsBalances, mmBalances) match {</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">case (Some(c), Some(s), Some(m)) =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug...</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">timeoutMessager.cancel</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">sendResponseAndShutdown(AccountBalances(checkingBalances, savingsBalances, mmBalances))</blockquote>case _ =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">}</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><br></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">def sendResponseAndShutdown(response: Any) = {</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">originalSender ! response</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">// log.debug...</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">context.stop(self) // or self ! PoisonPill</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">}</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><br></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">import context.dispatcher</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">val timeoutMessages = context.system.scheduler.scheduleOnce(250 milliseconds) {</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">self ! AccountRetrievalTimeout</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">}</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"></blockquote>}<div><br></div><div>class AccountBalanceRetriever(savingsAccounts: ActorRef, checkingAccounts: ActorRef, moneyMarketAccounts: ActorRef)</div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>extends Actor {</div></div></blockquote></blockquote></blockquote></blockquote>def receive = {</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">case GetCustomerAccountBalances(id) =&gt;</blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">val originalSender = sender</blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">val handler = context.ActorOf(AccountBalanceResponseHandler.props(savingsAccounts, checkingAccounts, moneyMarketAccounts), \"cameo-message-handler\") // explicit naming helps debug</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">savingsAccounts.tell(GetCustomerAccountBalances(id), handler)</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">checkingAccounts.tell(GetCustomerAccountBalances(id), handler)</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">moneyMarketAccounts.tell(GetCustomerAccountBalances(id), handler)</blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">}</blockquote>}<br><div><br><div><br></div><div><br></div></div>"
+                    },
+                    "style": {}
+                  },
+                  "ideas": {
+                    "1": {
+                      "title": "the tell method has to be used to pass an appropriate response handler",
+                      "id": 66,
+                      "ideas": {}
+                    },
+                    "2": {
+                      "title": "The sender has to be saved into a local variable",
+                      "id": 68,
+                      "ideas": {
+                        "1": {
+                          "title": "It might get lost during message exchanges",
+                          "id": 69
+                        }
+                      }
+                    },
+                    "3": {
+                      "title": "The props factory method should not be used during tests",
+                      "id": 70,
+                      "ideas": {
+                        "1": {
+                          "title": "The instantiation of the Props instance for stubbed actors remains in the context of a test",
+                          "id": 71
+                        },
+                        "2": {
+                          "title": "There is no risk of closing over \"this\" from the test context",
+                          "id": 72
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "2": {
+              "title": "Benefits of putting Extra actors into predefined types",
+              "id": 62,
+              "ideas": {
+                "1": {
+                  "title": "Separate details into a well-named context",
+                  "id": 63
+                },
+                "2": {
+                  "title": "Easier debugging -  failures happen in a  named context",
+                  "id": 64
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        }
+      },
+      "attr": {
+        "collapsed": true,
+        "style": {}
+      }
+    },
+    "21": {
+      "title": "General good practices",
+      "id": 73,
+      "ideas": {
+        "1": {
+          "title": "Adhere to SRP",
+          "id": 74,
+          "ideas": {
+            "1": {
+              "title": "The simpler your acotrs are, the easier it is to compose a system of them",
+              "id": 75
+            },
+            "2": {
+              "title": "Much more flexibility",
+              "id": 76
+            }
+          }
+        },
+        "2": {
+          "title": "Create specific supervisors",
+          "id": 77,
+          "ideas": {
+            "1": {
+              "title": "Especially when using the AlllForOne strategy, it is much more efficient to have granular supervision",
+              "id": 78,
+              "ideas": {
+                "1": {
+                  "title": "Having a flat supervision structure causes an unnecessarily large amount of actors to be restarted",
+                  "id": 79
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "2": {
+              "title": "Maintain small error kernels",
+              "id": 80,
+              "ideas": {
+                "1": {
+                  "title": "An error kernel is a piece of code that effectively cannot fail",
+                  "id": 81
+                },
+                "2": {
+                  "title": "Supervisors restart actors and make sure that the part of the system is running in spite of any errors",
+                  "id": 82
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "Failure zones",
+              "id": 83,
+              "ideas": {
+                "1": {
+                  "title": "Do not use the DefaultDispatcher eveywhere",
+                  "id": 84
+                },
+                "2": {
+                  "title": "Take into account  mechanical sympathy",
+                  "id": 85,
+                  "ideas": {
+                    "1": {
+                      "title": "What kinds of machines, with how many cores, will run the application?",
+                      "id": 86
+                    },
+                    "2": {
+                      "title": "How CPU-bound are the tasks performed by the actors?",
+                      "id": 87
+                    },
+                    "3": {
+                      "title": "How many threads can realistically be expected to run concurrently for this application on those machines?",
+                      "id": 88
+                    }
+                  }
+                }
+              }
             }
           }
         }
