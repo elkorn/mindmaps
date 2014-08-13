@@ -450,6 +450,223 @@
                 }
               }
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "3": {
+          "title": "Avoid blocking",
+          "id": 89,
+          "ideas": {
+            "1": {
+              "title": "Blocking a thread allows the kernel to release it from its CPU core.",
+              "id": 90,
+              "ideas": {
+                "1": {
+                  "title": "This causes context switching.",
+                  "id": 91
+                },
+                "2": {
+                  "title": "Results in the loss of 'warmed' caches local to the core.",
+                  "id": 92
+                }
+              }
+            },
+            "2": {
+              "title": "An actor handles only one message from its mailbox at a time, sequentially.",
+              "id": 93,
+              "ideas": {}
+            },
+            "3": {
+              "title": "Perform behavior dictated by received messages in Futures.",
+              "id": 94,
+              "attr": {
+                "attachment": {
+                  "contentType": "text/html",
+                  "content": "case object TransactionSuccess<div><br></div><div>class CustomerUpdater(dbDriver: DatabaseDriver) extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>def receive = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case UpdateCustomer(customer) =&gt;</div></blockquote></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>val originalSender = sender</div><div>implicit val ec: ExecutionContext = ExecutionContext.fromExecutor(new ForkJoinPool())</div><div><br></div><div>val future = Future {</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// define JDBC action</div></blockquote></div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>future onComplete {</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case Failure(x) =&gt; throw new CustomerUpdateException(x)</div><div>case Success =&gt; originalSender ! TransactionSuccess()</div></blockquote></div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div></blockquote></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div>"
+                },
+                "style": {}
+              },
+              "ideas": {
+                "1": {
+                  "title": "The actors receives the requests, does the absolute minimum required to handle the message and delegates the work to a Future.",
+                  "id": 95
+                },
+                "2": {
+                  "title": "Also, a more specific exception type is created to pass onto the direct supervisor.",
+                  "id": 96
+                },
+                "3": {
+                  "title": "It's sensible to define a separate dispatcher for the futures.",
+                  "id": 97,
+                  "ideas": {
+                    "1": {
+                      "title": "Long-running or expensive tasks will not impact message handling as much.",
+                      "id": 98
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "4": {
+                  "title": "Parallelizing futures",
+                  "id": 100,
+                  "ideas": {
+                    "1": {
+                      "title": "Use a for comprehension containing only future types.",
+                      "id": 101,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "class SecurityPricingActor(exchange: Exchange, backOffice: BackOffice) extends Actor {<blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>def receive = {</div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case GetPricingInfo(security: Security) =&gt;</div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>val originalSender = sender</div><div>val bidAndAskFuture = Future { exchange.getBidAndAsk(security.id) }</div><div>val lastPriceFuture = Future { backOffice.getLastPrice(security.id) }</div><div><br></div><div>val response : Future[SecurityPricing] = for {</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">(bid, ask) = bidAndAskFuture &nbsp;// Future[(BigDecimal, BigDecimal)]</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">lastPrice = lastPriceFuture // Future[BigDecimal]</blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>} yield SecurityPricing(bid, ask, lastPrice)</div><div><br></div><div>response map (originalSender ! _)</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote>}"
+                        },
+                        "style": {}
+                      }
+                    },
+                    "2": {
+                      "title": "Alternatively, zip can be used.",
+                      "id": 102,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "class SecurityPricingActor(exchange: Exchange, backOffice: BackOffice) extends Actor {<blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">def receive = {</blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">case GetPricingInfo(security: Security) =&gt;</blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>val originalSender = sender</div><div>val bidAndAskFuture = Future { exchange.getBidAndAsk(security.id) }</div><div>val lastPriceFuture = Future { backOffice.getLastPrice(security.id) }</div><div><br></div><div>val response : Future[SecurityPricing] = for {</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>((bid, ask), lastPrice) = Future {</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>exchange.getBidAndAsk(security.id)</div></blockquote></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>} zip Future {</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>backOffice.getLastPrice(security.id)</div></blockquote></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>}</div></blockquote>} yield SecurityPrice(bid, ask, lastPrice)</blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>response map (originalSender ! _)</div></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote>}"
+                        },
+                        "style": {}
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "5": {
+                  "title": "Sequential futures",
+                  "id": 103,
+                  "ideas": {
+                    "1": {
+                      "title": "Used in cases when the futures must be executed in particular order.",
+                      "id": 104,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "val accountsForCustomer : Iterable[(Customer, Account)] = for {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>customer &lt;- Future { databaseService.getCustomers }</div><div>account &lt;- Future { accountService.getAccounts(customer.id) }</div></blockquote><div>} yield (customer, account)</div></div>"
+                        },
+                        "style": {}
+                      }
+                    }
+                  },
+                  "attr": {
+                    "style": {},
+                    "collapsed": true
+                  }
+                },
+                "6": {
+                  "title": "Futures and ExecutionContext",
+                  "id": 105,
+                  "ideas": {
+                    "1": {
+                      "title": "ExecutionContext provides a thread pool from which Futures draw their required resources.",
+                      "id": 106
+                    },
+                    "2": {
+                      "title": "Using an ActorSystem's default dispatcher",
+                      "id": 107,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "val system &nbsp;= ActorSystem()<div>implicit val ec: ExecutionContext = system.dispatcher</div><div>Future { /* work, work... */ }</div>"
+                        },
+                        "style": {}
+                      },
+                      "ideas": {
+                        "1": {
+                          "title": "The default dispatcher can lead to thread starvation when overloaded with potential work.",
+                          "id": 108
+                        }
+                      }
+                    },
+                    "3": {
+                      "title": "It's important to isolate execution by context.",
+                      "id": 109,
+                      "ideas": {
+                        "1": {
+                          "title": "Reduces resource contention between unrelated tasks.",
+                          "id": 110
+                        }
+                      },
+                      "attr": {
+                        "collapsed": true,
+                        "style": {}
+                      }
+                    },
+                    "4": {
+                      "title": "Using an Actor's dispatcher",
+                      "id": 111,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "implicit val ec: ExecutionContext = context.dispatcher<div>Future { /* work, work */ }</div>"
+                        },
+                        "style": {},
+                        "collapsed": true
+                      },
+                      "ideas": {
+                        "1": {
+                          "title": "Provides more resource granularity.",
+                          "id": 112
+                        },
+                        "2": {
+                          "title": "Still requires an Actor to dedicate a thread each time a Future is instantiated.",
+                          "id": 113
+                        }
+                      }
+                    },
+                    "5": {
+                      "title": "Creating arbitrary dispatchers on demand",
+                      "id": 114,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "implicit val ec: ExecutionContext = ExecutionContext.fromExecutor(new ForkJoinPool())<div>Future { /* work, work... */ }</div>"
+                        },
+                        "style": {}
+                      }
+                    },
+                    "6": {
+                      "title": "A commendable practice is to create named dispatchers dedicated for specific groups of tasks delegated to Futures.",
+                      "id": 116,
+                      "ideas": {
+                        "1": {
+                          "title": "The dispatchers can then be looked up by name.",
+                          "id": 118,
+                          "attr": {
+                            "attachment": {
+                              "contentType": "text/html",
+                              "content": "implicit val ec: ExecutionContext = context.system.dispatchers.lookup(\"transactionInterestCalculation\")"
+                            },
+                            "style": {}
+                          }
+                        },
+                        "2": {
+                          "title": "READ UP: how to create such dispatchers?",
+                          "id": 119,
+                          "attr": {
+                            "style": {
+                              "background": "#ff0000"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
