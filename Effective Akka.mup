@@ -487,7 +487,8 @@
                   "contentType": "text/html",
                   "content": "case object TransactionSuccess<div><br></div><div>class CustomerUpdater(dbDriver: DatabaseDriver) extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>def receive = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case UpdateCustomer(customer) =&gt;</div></blockquote></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>val originalSender = sender</div><div>implicit val ec: ExecutionContext = ExecutionContext.fromExecutor(new ForkJoinPool())</div><div><br></div><div>val future = Future {</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// define JDBC action</div></blockquote></div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>future onComplete {</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case Failure(x) =&gt; throw new CustomerUpdateException(x)</div><div>case Success =&gt; originalSender ! TransactionSuccess()</div></blockquote></div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div></blockquote></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div>"
                 },
-                "style": {}
+                "style": {},
+                "collapsed": true
               },
               "ideas": {
                 "1": {
@@ -666,7 +667,152 @@
                   }
                 }
               }
+            },
+            "4": {
+              "title": "Push, don't pull.",
+              "id": 120,
+              "ideas": {
+                "1": {
+                  "title": "The ask pattern requires a future to send the message in the first place.",
+                  "id": 121,
+                  "ideas": {
+                    "1": {
+                      "title": "The handler for the the response is queued with the ExecutionContext.",
+                      "id": 122
+                    },
+                    "2": {
+                      "title": "Additionally, there is a timeout associated with it.",
+                      "id": 123
+                    },
+                    "3": {
+                      "title": "All of these combined are quite heavy for a simple actor interaction.",
+                      "id": 124
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "2": {
+                  "title": "It is better to fire and forget messages and be prepared to handle responses.",
+                  "id": 125,
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "object MyActor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">case class DataToHandle(bytes: Array[Byte])</blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">case object GetData</blockquote><div>}</div></div><div><br></div><div>class MyActor(otherActor: ActorRef) extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>import MyActor._</div><div>import context.dispatcher</div><div><br></div><div>var cancellable: Option[Cancellable] = None</div><div>def receive = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case Start =&gt;</div></blockquote></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>context.become(dataHandler) // push state onto stack</div><div>cancellable = Some(context.system.scheduler.schedule(0 milliseconds, 500 milliseconds, otherActor, GetData))</div></blockquote></div></blockquote></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>def dataHandler: Receive = {</div></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case DataToHandle(data) =&gt;</div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>cancellable map (_.cancel)</div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>context.unbecome // pop state from stack</div></blockquote></blockquote></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div>"
+                    },
+                    "style": {}
+                  },
+                  "ideas": {
+                    "1": {
+                      "title": "Receive messages can be chained.",
+                      "id": 126,
+                      "ideas": {
+                        "1": {
+                          "title": "An actor is allowed to register receive blocks and handle the messages received in an ordered fashion.",
+                          "id": 127,
+                          "ideas": {
+                            "1": {
+                              "title": "The used traits are linearized.",
+                              "id": 128
+                            }
+                          }
+                        }
+                      },
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "trait ChainingActor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>private var chainedReceives: List[Receive] = List()</div><div><br></div><div>def registerReceive(newReceive: Receive) {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>chainedReceived = newReceive :: chainedReceives</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>def receive = chainedReceives reduce (_ orElse _)</div></blockquote><div>}</div></div><div><br></div><div>trait IntActor extends ChainingActor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>registerReceive {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case i: Int =&gt; println(\"int!\")</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div><div><br></div><div>trait StringActor extends ChainingActor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>registerReceive {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case s: String =&gt; println(\"string!\")</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div>"
+                        },
+                        "style": {}
+                      }
+                    },
+                    "2": {
+                      "title": "It does not really matter in a real-world system that the actor does not handle consecutive DataToHandle messages.",
+                      "id": 129,
+                      "ideas": {
+                        "1": {
+                          "title": "Messages should be sent multiple times until a response is received or some timeout occurs.",
+                          "id": 130
+                        },
+                        "2": {
+                          "title": "In effect, the actor should handle only one of the many messages anyway.",
+                          "id": 131
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "When you have to block",
+              "id": 132,
+              "ideas": {
+                "1": {
+                  "title": "E.g. when having an actor talk to a legacy, blocking database driver.",
+                  "id": 133
+                },
+                "2": {
+                  "title": "Limit the effect of the blocking call.",
+                  "id": 134,
+                  "ideas": {
+                    "1": {
+                      "title": "Put an actor with blocking calls inside its own dispatcher.",
+                      "id": 135,
+                      "ideas": {
+                        "1": {
+                          "title": "Its resources should not be shared by any other actors performing non-blocking work.",
+                          "id": 136
+                        }
+                      },
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "<div>// The context here is of an actor that will create the blocking actor.</div>val customerRetriever = context.actorOf(Props[CustomerRetrievalActor].withDispatcher(\"customer-retrieval-dispatcher\"), \"customer-retriever\")<div><br></div><div>class CustomerRetrievalActor extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>def receive = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case GetCustomer(id) =&gt;</div></blockquote></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// Make a database call</div></blockquote></div></blockquote></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div>"
+                        },
+                        "style": {}
+                      }
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Managed blocking",
+                  "id": 137,
+                  "ideas": {
+                    "1": {
+                      "title": "The thread pool is notified that the wrapped task is blocking or long-running.",
+                      "id": 139,
+                      "ideas": {
+                        "1": {
+                          "title": "It can adjust the amount of threads elastically to make sure nobody is starved.",
+                          "id": 140
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "import scala.concurrent.blocking<div><br></div><div>blocking {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// Do some blocking behavior.</div></blockquote></div><div>}</div>"
+                    },
+                    "style": {}
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
             }
+          },
+          "attr": {
+            "style": {}
           }
         }
       }
