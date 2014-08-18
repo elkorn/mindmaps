@@ -387,7 +387,7 @@
           }
         },
         "2": {
-          "title": "Create specific supervisors",
+          "title": "Create specific supervisors.",
           "id": 77,
           "ideas": {
             "1": {
@@ -457,7 +457,7 @@
           }
         },
         "3": {
-          "title": "Avoid blocking",
+          "title": "Avoid blocking.",
           "id": 89,
           "ideas": {
             "1": {
@@ -472,6 +472,10 @@
                   "title": "Results in the loss of 'warmed' caches local to the core.",
                   "id": 92
                 }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
               }
             },
             "2": {
@@ -541,7 +545,6 @@
                     }
                   },
                   "attr": {
-                    "collapsed": true,
                     "style": {}
                   }
                 },
@@ -562,8 +565,7 @@
                     }
                   },
                   "attr": {
-                    "style": {},
-                    "collapsed": true
+                    "style": {}
                   }
                 },
                 "6": {
@@ -601,7 +603,6 @@
                         }
                       },
                       "attr": {
-                        "collapsed": true,
                         "style": {}
                       }
                     },
@@ -613,8 +614,7 @@
                           "contentType": "text/html",
                           "content": "implicit val ec: ExecutionContext = context.dispatcher<div>Future { /* work, work */ }</div>"
                         },
-                        "style": {},
-                        "collapsed": true
+                        "style": {}
                       },
                       "ideas": {
                         "1": {
@@ -654,7 +654,7 @@
                           }
                         },
                         "2": {
-                          "title": "READ UP: how to create such dispatchers?",
+                          "title": "READ UP\nhow to create such dispatchers?",
                           "id": 119,
                           "attr": {
                             "style": {
@@ -738,7 +738,10 @@
                         },
                         "2": {
                           "title": "In effect, the actor should handle only one of the many messages anyway.",
-                          "id": 131
+                          "id": 131,
+                          "attr": {
+                            "style": {}
+                          }
                         }
                       }
                     }
@@ -746,8 +749,8 @@
                 }
               },
               "attr": {
-                "collapsed": true,
-                "style": {}
+                "style": {},
+                "collapsed": true
               }
             },
             "5": {
@@ -806,13 +809,400 @@
                 }
               },
               "attr": {
-                "collapsed": true,
-                "style": {}
+                "style": {},
+                "collapsed": true
               }
             }
           },
           "attr": {
-            "style": {}
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "4": {
+          "title": "Avoid premature optimization.",
+          "id": 141,
+          "ideas": {
+            "1": {
+              "title": "Do not parallelize with routers until performance hot spots have been measured.",
+              "id": 142
+            },
+            "2": {
+              "title": "Start by modelling interactions as simply as possible.",
+              "id": 143,
+              "ideas": {
+                "1": {
+                  "title": "Don't think in terms of async.",
+                  "id": 144
+                },
+                "2": {
+                  "title": "Direct the flow toward the result.",
+                  "id": 145
+                }
+              }
+            },
+            "3": {
+              "title": "Follow Jonas Boner's roadmap.",
+              "id": 146,
+              "ideas": {
+                "1": {
+                  "title": "Deterministic",
+                  "id": 147,
+                  "ideas": {
+                    "1": {
+                      "title": "Think in terms of the app being synchronous.",
+                      "id": 148
+                    },
+                    "2": {
+                      "title": "Only after that worry about non-deterministic behavior.",
+                      "id": 149
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "2": {
+                  "title": "Declarative",
+                  "id": 150,
+                  "ideas": {
+                    "1": {
+                      "title": "Avoid imperative programming constructs.",
+                      "id": 151,
+                      "ideas": {}
+                    },
+                    "2": {
+                      "title": "Better readability",
+                      "id": 153
+                    },
+                    "3": {
+                      "title": "Higher abstraction level, more wiggle room for the future.",
+                      "id": 154
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "3": {
+                  "title": "Immutable",
+                  "id": 155,
+                  "ideas": {
+                    "1": {
+                      "title": "Makes multithreading safe.",
+                      "id": 157
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "4": {
+                  "title": "Functional",
+                  "id": 158,
+                  "ideas": {
+                    "1": {
+                      "title": "Immutable",
+                      "id": 159
+                    },
+                    "2": {
+                      "title": "Referentially transparent",
+                      "id": 160,
+                      "ideas": {
+                        "1": {
+                          "title": "LSP -  you can substitute a value for a block of code without side effects taking place.",
+                          "id": 162
+                        }
+                      }
+                    },
+                    "3": {
+                      "title": "Having first-class functions",
+                      "id": 161
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "4": {
+              "title": "Layer in complexity via indeterminism.",
+              "id": 163,
+              "ideas": {
+                "1": {
+                  "title": "Attack the performance problems in specific locations that required boosting.",
+                  "id": 165,
+                  "ideas": {
+                    "1": {
+                      "title": "blocking I/O",
+                      "id": 166
+                    },
+                    "2": {
+                      "title": "critical sections that can't handle the load",
+                      "id": 167
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Start layering in asynchrony through the Extra pattern only in those spots.",
+                  "id": 168
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "Optimize with mutability.",
+              "id": 169,
+              "ideas": {
+                "1": {
+                  "title": "Applicable if you have long-lived objects.",
+                  "id": 170,
+                  "ideas": {
+                    "1": {
+                      "title": "Lifespna long enough for them to be pushed into OldGen GC region.",
+                      "id": 171
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Avoid locks if possible.",
+                  "id": 172,
+                  "ideas": {
+                    "1": {
+                      "title": "Using locks may cause deadlocking or livelocking.",
+                      "id": 177
+                    },
+                    "2": {
+                      "title": "Mutexes are expensive to create.",
+                      "id": 178
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Use Compare and  Swap",
+                  "id": 173,
+                  "ideas": {
+                    "1": {
+                      "title": "This is achieved through Java's Atomic References.",
+                      "id": 174
+                    },
+                    "2": {
+                      "title": "To compose Atomic References, use Scala's Software Transactional Memory\nhttp://nbronson.github.io/scala-stm/\n",
+                      "id": 175
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "6": {
+              "title": "Prepare for race conditions.",
+              "id": 179,
+              "ideas": {
+                "1": {
+                  "title": "Avoid coding in a way where timing matters.",
+                  "id": 180,
+                  "ideas": {
+                    "1": {
+                      "title": "Resilient systems continue to do things until the world around them changes to the way they expect it to be.",
+                      "id": 181,
+                      "ideas": {
+                        "1": {
+                          "title": "Failure is escalated to higher-level supervisors to recognize that the world needs to be pushed in a particular direction.",
+                          "id": 182
+                        }
+                      }
+                    },
+                    "2": {
+                      "title": "This goes hand in hand with DDD messaging.",
+                      "id": 183
+                    },
+                    "3": {
+                      "title": "READ UP\nThere are some patterns related to this paradigm.\nhttp://www.slideshare.net/shinolajla/real-world-akka-recepies-v3\n",
+                      "id": 184,
+                      "attr": {
+                        "style": {
+                          "background": "#ff0000"
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "2": {
+                  "title": "Tell, don't Ask.",
+                  "id": 185,
+                  "ideas": {
+                    "1": {
+                      "title": "Use fire & forget messages and be prepared to handle responses.",
+                      "id": 187
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "3": {
+                  "title": "Name Actors and ActorSystem instances.",
+                  "id": 188,
+                  "ideas": {
+                    "1": {
+                      "title": "Give unique names.",
+                      "id": 189,
+                      "ideas": {
+                        "1": {
+                          "title": "Enables creating and updating external configuration.",
+                          "id": 190
+                        },
+                        "2": {
+                          "title": "Makes actor lookup by name possible.",
+                          "id": 191,
+                          "attr": {
+                            "attachment": {
+                              "contentType": "text/html",
+                              "content": "<div>// Create a named actor.</div>val myActor = context.actorOf(Props[MyActor], \"my-actor\")<div><br></div><div>// Somewhere else, look the actor up.<br><div>val myActor = context.system.actorFor(\"my-actor\")</div></div>"
+                            },
+                            "style": {}
+                          },
+                          "ideas": {
+                            "1": {
+                              "title": "actorFor is deprecated due to differences between local and remote",
+                              "id": 192
+                            },
+                            "2": {
+                              "title": "use actorSelection instead\nhttp://bit.ly/17cudgQ\n",
+                              "id": 193
+                            }
+                          }
+                        }
+                      },
+                      "attr": {
+                        "collapsed": true,
+                        "style": {}
+                      }
+                    }
+                  }
+                },
+                "4": {
+                  "title": "Create specialized messages.",
+                  "id": 195,
+                  "ideas": {
+                    "1": {
+                      "title": "Do not pass generic messages around.",
+                      "id": 196,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "// Bad - many actors will have to determine whether this message is relevant to them.<div>case object AccountsUpdated</div><div><br></div><div>// Good - only the CustomerActor related to given customer is notified of the change.</div><div>case class AccountUpdated(customerId: Long, accountId: Long)</div>"
+                        },
+                        "style": {}
+                      }
+                    },
+                    "2": {
+                      "title": "They should flow through the supervisor hierarchy in a direct fashion to the Actor best equipped to handle it.",
+                      "id": 197,
+                      "ideas": {
+                        "1": {
+                          "title": "Avoid intermediaries.",
+                          "id": 198
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "5": {
+                  "title": "Create specialized exceptions.",
+                  "id": 199,
+                  "ideas": {
+                    "1": {
+                      "title": "Using generalized exceptions will cause large swathes of Actors to be restarted in case of failures.",
+                      "id": 201
+                    },
+                    "2": {
+                      "title": "Default supervisor failure handling strategy is to restart every Actor below.",
+                      "id": 202,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// It's the same as the default behavior, but it's good practice to override it anyhow, just to be explicit</div><div>// and remember that this will be prone to change in the future.</div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: Exception =&gt; Restart</div></blockquote>}<br></div><div><br></div><div>/* ... */</div><div><br></div></blockquote><div><div>}</div></div></div>"
+                        },
+                        "style": {},
+                        "collapsed": true
+                      },
+                      "ideas": {
+                        "1": {
+                          "title": "If there is no handler all the way to the hierarchy root, everything will get restarted.",
+                          "id": 203,
+                          "ideas": {
+                            "1": {
+                              "title": "This is OK for a catastrophic application failure, but that's pretty much it.",
+                              "id": 204
+                            }
+                          }
+                        },
+                        "2": {
+                          "title": "By default, Akka will stop a child actor on ActorInitializationEx\nception and ActorKilledException . Akka will restart a child actor\non Exception , and all other types will be escalated to the parent actor.",
+                          "id": 207
+                        }
+                      }
+                    },
+                    "3": {
+                      "title": "Make sure the appropriate supervisor ends up handling specific exception types.",
+                      "id": 208,
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>case _: SQLException =&gt; Resume &nbsp; &nbsp;// Probably bad data in the message, can safely continue working.</div></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: MyDbConnectionException =&gt; Escalate &nbsp; &nbsp;// Something is seriously wrong with the DB connection.</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>/* ... */</div></blockquote><div>}</div></div>"
+                        },
+                        "style": {},
+                        "collapsed": true
+                      },
+                      "ideas": {
+                        "1": {
+                          "title": "The MyDbConnection failure might be e.g. just an authentication issue.",
+                          "id": 209,
+                          "ideas": {
+                            "1": {
+                              "title": "Nevertheless, it can be now escalated to the supervisor that can decide whether it's an isolated failure or a part of a larger problem.",
+                              "id": 210,
+                              "ideas": {
+                                "1": {
+                                  "title": "In case of larger issues, all actors relying on the faulty connection can be stopped until a new one can be established.",
+                                  "id": 211
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
