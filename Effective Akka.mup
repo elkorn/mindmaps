@@ -1060,70 +1060,52 @@
                     "collapsed": true,
                     "style": {}
                   }
-                },
-                "3": {
-                  "title": "Name Actors and ActorSystem instances.",
-                  "id": 188,
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "5": {
+          "title": "Be explicit.",
+          "id": 212,
+          "ideas": {
+            "1": {
+              "title": "Name Actors and ActorSystem instances.",
+              "id": 188,
+              "ideas": {
+                "1": {
+                  "title": "Give unique names.",
+                  "id": 189,
                   "ideas": {
                     "1": {
-                      "title": "Give unique names.",
-                      "id": 189,
-                      "ideas": {
-                        "1": {
-                          "title": "Enables creating and updating external configuration.",
-                          "id": 190
-                        },
-                        "2": {
-                          "title": "Makes actor lookup by name possible.",
-                          "id": 191,
-                          "attr": {
-                            "attachment": {
-                              "contentType": "text/html",
-                              "content": "<div>// Create a named actor.</div>val myActor = context.actorOf(Props[MyActor], \"my-actor\")<div><br></div><div>// Somewhere else, look the actor up.<br><div>val myActor = context.system.actorFor(\"my-actor\")</div></div>"
-                            },
-                            "style": {}
-                          },
-                          "ideas": {
-                            "1": {
-                              "title": "actorFor is deprecated due to differences between local and remote",
-                              "id": 192
-                            },
-                            "2": {
-                              "title": "use actorSelection instead\nhttp://bit.ly/17cudgQ\n",
-                              "id": 193
-                            }
-                          }
-                        }
-                      },
-                      "attr": {
-                        "collapsed": true,
-                        "style": {}
-                      }
-                    }
-                  }
-                },
-                "4": {
-                  "title": "Create specialized messages.",
-                  "id": 195,
-                  "ideas": {
-                    "1": {
-                      "title": "Do not pass generic messages around.",
-                      "id": 196,
+                      "title": "Enables creating and updating external configuration.",
+                      "id": 190
+                    },
+                    "2": {
+                      "title": "Makes actor lookup by name possible.",
+                      "id": 191,
                       "attr": {
                         "attachment": {
                           "contentType": "text/html",
-                          "content": "// Bad - many actors will have to determine whether this message is relevant to them.<div>case object AccountsUpdated</div><div><br></div><div>// Good - only the CustomerActor related to given customer is notified of the change.</div><div>case class AccountUpdated(customerId: Long, accountId: Long)</div>"
+                          "content": "<div>// Create a named actor.</div>val myActor = context.actorOf(Props[MyActor], \"my-actor\")<div><br></div><div>// Somewhere else, look the actor up.<br><div>val myActor = context.system.actorFor(\"my-actor\")</div></div>"
                         },
                         "style": {}
-                      }
-                    },
-                    "2": {
-                      "title": "They should flow through the supervisor hierarchy in a direct fashion to the Actor best equipped to handle it.",
-                      "id": 197,
+                      },
                       "ideas": {
                         "1": {
-                          "title": "Avoid intermediaries.",
-                          "id": 198
+                          "title": "actorFor is deprecated due to differences between local and remote",
+                          "id": 192
+                        },
+                        "2": {
+                          "title": "use actorSelection instead\nhttp://bit.ly/17cudgQ\n",
+                          "id": 193
                         }
                       }
                     }
@@ -1132,68 +1114,103 @@
                     "collapsed": true,
                     "style": {}
                   }
+                }
+              },
+              "attr": {
+                "style": {},
+                "collapsed": true
+              }
+            },
+            "2": {
+              "title": "Create specialized messages.",
+              "id": 195,
+              "ideas": {
+                "1": {
+                  "title": "Do not pass generic messages around.",
+                  "id": 196,
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "// Bad - many actors will have to determine whether this message is relevant to them.<div>case object AccountsUpdated</div><div><br></div><div>// Good - only the CustomerActor related to given customer is notified of the change.</div><div>case class AccountUpdated(customerId: Long, accountId: Long)</div>"
+                    },
+                    "style": {}
+                  }
                 },
-                "5": {
-                  "title": "Create specialized exceptions.",
-                  "id": 199,
+                "2": {
+                  "title": "They should flow through the supervisor hierarchy in a direct fashion to the Actor best equipped to handle it.",
+                  "id": 197,
                   "ideas": {
                     "1": {
-                      "title": "Using generalized exceptions will cause large swathes of Actors to be restarted in case of failures.",
-                      "id": 201
+                      "title": "Avoid intermediaries.",
+                      "id": 198
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "Create specialized exceptions.",
+              "id": 199,
+              "ideas": {
+                "1": {
+                  "title": "Using generalized exceptions will cause large swathes of Actors to be restarted in case of failures.",
+                  "id": 201
+                },
+                "2": {
+                  "title": "Default supervisor failure handling strategy is to restart every Actor below.",
+                  "id": 202,
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// It's the same as the default behavior, but it's good practice to override it anyhow, just to be explicit</div><div>// and remember that this will be prone to change in the future.</div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: Exception =&gt; Restart</div></blockquote>}<br></div><div><br></div><div>/* ... */</div><div><br></div></blockquote><div><div>}</div></div></div>"
                     },
-                    "2": {
-                      "title": "Default supervisor failure handling strategy is to restart every Actor below.",
-                      "id": 202,
-                      "attr": {
-                        "attachment": {
-                          "contentType": "text/html",
-                          "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// It's the same as the default behavior, but it's good practice to override it anyhow, just to be explicit</div><div>// and remember that this will be prone to change in the future.</div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: Exception =&gt; Restart</div></blockquote>}<br></div><div><br></div><div>/* ... */</div><div><br></div></blockquote><div><div>}</div></div></div>"
-                        },
-                        "style": {},
-                        "collapsed": true
-                      },
+                    "style": {},
+                    "collapsed": true
+                  },
+                  "ideas": {
+                    "1": {
+                      "title": "If there is no handler all the way to the hierarchy root, everything will get restarted.",
+                      "id": 203,
                       "ideas": {
                         "1": {
-                          "title": "If there is no handler all the way to the hierarchy root, everything will get restarted.",
-                          "id": 203,
-                          "ideas": {
-                            "1": {
-                              "title": "This is OK for a catastrophic application failure, but that's pretty much it.",
-                              "id": 204
-                            }
-                          }
-                        },
-                        "2": {
-                          "title": "By default, Akka will stop a child actor on ActorInitializationEx\nception and ActorKilledException . Akka will restart a child actor\non Exception , and all other types will be escalated to the parent actor.",
-                          "id": 207
+                          "title": "This is OK for a catastrophic application failure, but that's pretty much it.",
+                          "id": 204
                         }
                       }
                     },
-                    "3": {
-                      "title": "Make sure the appropriate supervisor ends up handling specific exception types.",
-                      "id": 208,
-                      "attr": {
-                        "attachment": {
-                          "contentType": "text/html",
-                          "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>case _: SQLException =&gt; Resume &nbsp; &nbsp;// Probably bad data in the message, can safely continue working.</div></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: MyDbConnectionException =&gt; Escalate &nbsp; &nbsp;// Something is seriously wrong with the DB connection.</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>/* ... */</div></blockquote><div>}</div></div>"
-                        },
-                        "style": {},
-                        "collapsed": true
-                      },
+                    "2": {
+                      "title": "By default, Akka will stop a child actor on ActorInitializationEx\nception and ActorKilledException . Akka will restart a child actor\non Exception , and all other types will be escalated to the parent actor.",
+                      "id": 207
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Make sure the appropriate supervisor ends up handling specific exception types.",
+                  "id": 208,
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "class MySupervisor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>override val supervisorStrategy = OneForOneStrategy() {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>case _: SQLException =&gt; Resume &nbsp; &nbsp;// Probably bad data in the message, can safely continue working.</div></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case _: MyDbConnectionException =&gt; Escalate &nbsp; &nbsp;// Something is seriously wrong with the DB connection.</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div><div><br></div><div>/* ... */</div></blockquote><div>}</div></div>"
+                    },
+                    "style": {},
+                    "collapsed": true
+                  },
+                  "ideas": {
+                    "1": {
+                      "title": "The MyDbConnection failure might be e.g. just an authentication issue.",
+                      "id": 209,
                       "ideas": {
                         "1": {
-                          "title": "The MyDbConnection failure might be e.g. just an authentication issue.",
-                          "id": 209,
+                          "title": "Nevertheless, it can be now escalated to the supervisor that can decide whether it's an isolated failure or a part of a larger problem.",
+                          "id": 210,
                           "ideas": {
                             "1": {
-                              "title": "Nevertheless, it can be now escalated to the supervisor that can decide whether it's an isolated failure or a part of a larger problem.",
-                              "id": 210,
-                              "ideas": {
-                                "1": {
-                                  "title": "In case of larger issues, all actors relying on the faulty connection can be stopped until a new one can be established.",
-                                  "id": 211
-                                }
-                              }
+                              "title": "In case of larger issues, all actors relying on the faulty connection can be stopped until a new one can be established.",
+                              "id": 211
                             }
                           }
                         }
@@ -1201,8 +1218,242 @@
                     }
                   }
                 }
+              },
+              "attr": {
+                "style": {},
+                "collapsed": true
+              }
+            },
+            "4": {
+              "title": "Using general names may cause event storms.",
+              "id": 214,
+              "ideas": {
+                "1": {
+                  "title": "Dampen msg overload.",
+                  "id": 215,
+                  "ideas": {
+                    "1": {
+                      "title": "Ignore instances of a message that has been already handled within the past X milliseconds.",
+                      "id": 216
+                    }
+                  }
+                },
+                "2": {
+                  "title": "Use circuit breakers for failure overload.",
+                  "id": 217,
+                  "ideas": {},
+                  "attr": {
+                    "attachment": {
+                      "contentType": "text/html",
+                      "content": "class CircuitBreakingActor extends Actor {<div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>import context.dispatcher</div><div><br></div><div>val circuitBreaker = new CircuitBreaker(context.system.scheduler,</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">callTimeout = 100.milliseconds,</blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">maxFailures = 10,</blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>resetTimeout = 1.second)</div></div></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">.onOpen(logCircuitBreakerOpen())</blockquote><br></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\">def logCircuitBreakerOpen = log.info(\"CircuitBreaker is open.\")</blockquote><div><div>}</div></div>"
+                    },
+                    "style": {}
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
               }
             }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        },
+        "6": {
+          "title": "Don't expose actors.",
+          "id": 219,
+          "ideas": {
+            "1": {
+              "title": "Avoid using `this`.",
+              "id": 220,
+              "ideas": {
+                "1": {
+                  "title": "In a multithreaded  environment this may cause serious multiple threads to be running within one Actor.",
+                  "id": 221,
+                  "ideas": {}
+                },
+                "2": {
+                  "title": "Within an Actor, use `self` instead.",
+                  "id": 222
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "2": {
+              "title": "Use the companion object factory method.",
+              "id": 223,
+              "attr": {
+                "style": {},
+                "attachment": {
+                  "contentType": "text/html",
+                  "content": "<div>// The incorrect way.<br></div><div>case object IncrementCount<br></div><div><div>class CounterActor(initialCounterValue: Int) extends Actor {</div><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>var counter = initialCounterValue</div><div>def receive = {</div></blockquote></div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">case IncrementCount =&gt; counter += 1</blockquote></blockquote><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote></div><div>}<br></div></div><div><br></div><div>class ParentOfCounterActor extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>val counter = context.ActorOf(Props(new CounterActor(0)), \"counter-actor\")</div><div>def receive = Actor.emptyBehavior</div></blockquote></div><div>}</div><div><br></div><div>// The correct way.</div><div>object CounterActor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case object IncrementCount</div><div><br></div><div>def props(counter: Int): Props = Props(new CounterActor(counter))</div></blockquote></div><div>}</div><div><br></div><div><div><div>class CounterActor(initialCounterValue: Int) extends Actor {</div><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>var counter = initialCounterValue</div><div>def receive = {</div></blockquote></div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">case CounterActor.IncrementCount =&gt; counter += 1</blockquote></blockquote><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote></div><div>}<br></div></div><div><br></div><div>class ParentOfCounterActor extends Actor {</div></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><div>// This way, the reference to `this` of the ParentOfCounterActor instance is not closed over.</div></div></blockquote><div><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>val counter = context.ActorOf(CounterActor.props(0), \"counter-actor\")</div><div>def receive = Actor.emptyBehavior</div></blockquote></div><div>}</div><div><div><br></div><div><br></div></div></div>"
+                },
+                "collapsed": true
+              },
+              "ideas": {
+                "1": {
+                  "title": "When creating a new Actor within the body of another one, `this` ref is captured from the parent Actor.",
+                  "id": 224,
+                  "ideas": {
+                    "1": {
+                      "title": "This is as of Akka 2.2 and Scala 2.10",
+                      "id": 225
+                    }
+                  }
+                }
+              }
+            },
+            "3": {
+              "title": "Never use direct references between actors.",
+              "id": 227,
+              "ideas": {
+                "1": {
+                  "title": "You should only ever refer to an Actor as an ActorRef, exposing only an API of message sending.",
+                  "id": 228
+                },
+                "2": {
+                  "title": "One exception: testing.",
+                  "id": 229,
+                  "ideas": {
+                    "1": {
+                      "title": "You're going to want to mock stuff.",
+                      "id": 230
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "4": {
+              "title": "Don't close over variables.",
+              "id": 231,
+              "ideas": {
+                "1": {
+                  "title": "A lambda referencing external state becomes a closure.",
+                  "id": 232,
+                  "ideas": {
+                    "1": {
+                      "title": "This is not a bad situation as long as the external state is immutable.",
+                      "id": 233,
+                      "ideas": {
+                        "1": {
+                          "title": "Consequences are similar to using `this`.",
+                          "id": 234
+                        }
+                      },
+                      "attr": {
+                        "attachment": {
+                          "contentType": "text/html",
+                          "content": "// Bad.<div>class MyActor extends Actor {</div><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>var counter = 0</div><div>def receive = {</div></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>case DoSomethingAsync = {</div></blockquote></div></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>counter += 1</div><div><br></div><div>import context.dispatcher</div><div>Future {</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>// At this point, You have no guarantees as to what the value of `counter` might be.</div></blockquote></div></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>if (counter &lt; 10) println(\"single digits\")</div><div>else println(\"larger than single digits\")</div></blockquote></blockquote></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div></blockquote></blockquote><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div></blockquote><div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div>}</div></blockquote></div><div>}</div><div><br></div><div>// Better.</div><div><div>class MyActor extends Actor {</div><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>var counter = 0</div><div>def receive = {</div></blockquote></div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">case DoSomethingAsync = {</blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>counter += 1</div><div><br></div><div>import context.dispatcher</div><div>// The mutable state should be immediately copied into an immutable local field.<br></div></blockquote></blockquote></blockquote></div><blockquote style=\"margin: 0 0 0 40px; border: none; padding: 0px;\"><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>val&nbsp;localCounter&nbsp;= counter&nbsp;</div></blockquote></blockquote></div></blockquote><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>Future {</div></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">// You can be sure that the value of `localCounter` has not changed since its assignment.</blockquote></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><div>if (localCounter &lt; 10) println(\"single digits\")</div><div>else println(\"larger than single digits\")</div></blockquote></blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote></blockquote></blockquote><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\"><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote></blockquote><div><blockquote style=\"padding-left: 0px; margin-bottom: 0px; margin-left: 40px; border: none;\">}</blockquote></div><div>}</div></div>"
+                        },
+                        "style": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "Use immutable messages with immutable data.",
+              "id": 235,
+              "ideas": {
+                "1": {
+                  "title": "Value immutability does not mean that object attributes are themselves immutable.",
+                  "id": 236
+                },
+                "2": {
+                  "title": "Stabilize any mutable values by copying them into immutable fields before sending.",
+                  "id": 237
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "7": {
+          "title": "Help yourself in production.",
+          "id": 238,
+          "ideas": {
+            "1": {
+              "title": "Use the Typesafe Console for debugging.",
+              "id": 240
+            },
+            "2": {
+              "title": "Add metrics.\nhttp://metrics.codahale.com/\n",
+              "id": 241
+            },
+            "3": {
+              "title": "Externalize business logic.",
+              "id": 242,
+              "ideas": {
+                "1": {
+                  "title": "It's prudent to keep business logic in a separate library.",
+                  "id": 243
+                }
+              }
+            },
+            "4": {
+              "title": "Use semantically useful logging.",
+              "id": 244,
+              "ideas": {
+                "1": {
+                  "title": "Pretty print.",
+                  "id": 245
+                },
+                "2": {
+                  "title": "Make log output searchable.",
+                  "id": 246
+                }
+              }
+            },
+            "5": {
+              "title": "Aggregate logs with a tool like Flume.",
+              "id": 247,
+              "ideas": {
+                "1": {
+                  "title": "Having a distributed system means that each set of logs resides on an individual machine.",
+                  "id": 248
+                },
+                "2": {
+                  "title": "Flume can aggregate them on one server.",
+                  "id": 249
+                }
+              }
+            },
+            "6": {
+              "title": "Use unique IDs for messages.",
+              "id": 250,
+              "ideas": {
+                "1": {
+                  "title": "Balance computational intensity vs the need for uniqueness. ",
+                  "id": 251
+                }
+              }
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
           }
         }
       }
