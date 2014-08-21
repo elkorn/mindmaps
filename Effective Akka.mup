@@ -1452,8 +1452,256 @@
             }
           },
           "attr": {
-            "collapsed": true,
-            "style": {}
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "8": {
+          "title": "Use the Typesafe Console for application tuning.",
+          "id": 252,
+          "ideas": {
+            "1": {
+              "title": "Fixing starvation",
+              "id": 253,
+              "ideas": {
+                "1": {
+                  "title": "Stop using the default dispatcher.",
+                  "id": 254
+                },
+                "2": {
+                  "title": "Identify the Actors using Futures.",
+                  "id": 256,
+                  "ideas": {
+                    "1": {
+                      "title": "Consider a separate dispatcher so that they do not impact other Actors with their thread usage.",
+                      "id": 257
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Typesafe Console shows starvation occuring as max latency in handling messages at the dispatcher level increases.",
+                  "id": 258
+                },
+                "4": {
+                  "title": "Avoid PinnedDispatcher.",
+                  "id": 259,
+                  "ideas": {
+                    "1": {
+                      "title": "It can consume memory up pretty quickly in a production setting.",
+                      "id": 260
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "5": {
+                  "title": "Failure zones",
+                  "id": 261,
+                  "ideas": {
+                    "1": {
+                      "title": "To effectively implement them, identify their risk profile.",
+                      "id": 262,
+                      "ideas": {
+                        "1": {
+                          "title": "Is a task particularly dangerous, such as network I/O?",
+                          "id": 263
+                        },
+                        "2": {
+                          "title": "Does the task require blocking, such as DB access?",
+                          "id": 264
+                        },
+                        "3": {
+                          "title": "If so, isolated these actors and their threads from those doing the less dangerous work.",
+                          "id": 265
+                        },
+                        "4": {
+                          "title": "Typesafe Console visualizes the dispatcher performance.",
+                          "id": 267,
+                          "ideas": {
+                            "1": {
+                              "title": "You can be certain of having properly provided bulkheads between actors doing blocking work and those that should not be affected.",
+                              "id": 268
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                },
+                "6": {
+                  "title": "Routers",
+                  "id": 269,
+                  "ideas": {
+                    "1": {
+                      "title": "Areas of heavy computation may be broken down into more granular tasks through routers.",
+                      "id": 270
+                    },
+                    "2": {
+                      "title": "Tasks assigned to routers should optimally also oprate on their own dispatcher.",
+                      "id": 271
+                    },
+                    "3": {
+                      "title": "Typesafe Console visualizes the isolation of works via Actors and their dispatcher.",
+                      "id": 272,
+                      "ideas": {
+                        "1": {
+                          "title": "Be certain that the routers are effectively handling the workload.",
+                          "id": 273
+                        }
+                      }
+                    }
+                  },
+                  "attr": {
+                    "collapsed": true,
+                    "style": {}
+                  }
+                }
+              }
+            },
+            "2": {
+              "title": "Sizing dispatchers",
+              "id": 274,
+              "ideas": {
+                "1": {
+                  "title": "Size thread pools close to the number of cores a server box has available.",
+                  "id": 276,
+                  "ideas": {
+                    "1": {
+                      "title": "Test that setup using a reasonable load and profile it with the Typesafe Console.",
+                      "id": 277,
+                      "ideas": {
+                        "1": {
+                          "title": "Thread pool can be externally configured if needed.",
+                          "id": 278
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "Parallelism-factor setting",
+              "id": 279,
+              "ideas": {
+                "1": {
+                  "title": "Set the minimum, maximum no. of threads and the parallelism factor if latency within a dispatcher stops being acceptable.",
+                  "id": 280,
+                  "ideas": {
+                    "1": {
+                      "title": "The dispatcher's view provides such data.",
+                      "id": 285
+                    }
+                  }
+                },
+                "2": {
+                  "title": "The ceiling of the number of cores on a box, multiplied by that factor is calculated.",
+                  "id": 282,
+                  "ideas": {
+                    "1": {
+                      "title": "This determines the thread pool size, bounded by the max and min settings that you provide.",
+                      "id": 283
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "4": {
+              "title": "Actor mailbox size",
+              "id": 286,
+              "ideas": {
+                "1": {
+                  "title": "If an Actor's mailbox size is constantly growing, that's a problem.",
+                  "id": 287,
+                  "ideas": {
+                    "1": {
+                      "title": "Retune the number of threads for its dispatcher.",
+                      "id": 288
+                    },
+                    "2": {
+                      "title": "Parallelize its task by making a router.",
+                      "id": 289,
+                      "ideas": {
+                        "1": {
+                          "title": "Add a few extra threads so that you're prepared for bursts of traffic.",
+                          "id": 290
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "Throughput setting",
+              "id": 291,
+              "ideas": {
+                "1": {
+                  "title": "a setting on the dispatcher",
+                  "id": 292
+                },
+                "2": {
+                  "title": "Defines thread distribution fairness in the dispatcher.",
+                  "id": 293,
+                  "ideas": {
+                    "1": {
+                      "title": "Tells the Actors how many msgs to handle before relinquishing the thread.",
+                      "id": 294
+                    },
+                    "2": {
+                      "title": "It may be sensible to be less fair in the   distribution.",
+                      "id": 295,
+                      "ideas": {
+                        "1": {
+                          "title": "A few messages handed consecutively by each Actor take advantage of warmed caches.",
+                          "id": 296
+                        }
+                      }
+                    }
+                  }
+                },
+                "3": {
+                  "title": "Edge cases",
+                  "id": 297,
+                  "attr": {
+                    "style": {}
+                  },
+                  "ideas": {
+                    "1": {
+                      "title": "When the number of threads  is equal to the number of Actors using the dispatcher, set the throughput number extremely high, like 1000. ",
+                      "id": 298
+                    },
+                    "2": {
+                      "title": "When Actors perform long-running tasks and you need fairness to avoid starvation within a shared pool, set the throughput number to 1.",
+                      "id": 299
+                    },
+                    "3": {
+                      "title": "General usage  - start with the value of 5 and tune it for each dispatcher.",
+                      "id": 300
+                    }
+                  }
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            }
           }
         }
       }
