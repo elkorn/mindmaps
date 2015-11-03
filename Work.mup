@@ -1,0 +1,283 @@
+{
+  "title": "Work",
+  "id": 1,
+  "formatVersion": 2,
+  "ideas": {
+    "1": {
+      "title": "VR",
+      "id": 4
+    },
+    "-1": {
+      "title": "Distributed systems",
+      "id": 5,
+      "ideas": {
+        "1": {
+          "title": "Scalability",
+          "id": 6,
+          "ideas": {
+            "2": {
+              "title": "Write architecture notes",
+              "id": 23,
+              "ideas": {
+                "1": {
+                  "title": "youtube \nhttp://highscalability.com/youtube-architecture",
+                  "id": 24
+                },
+                "2": {
+                  "title": "PlentyOfFish\nhttp://highscalability.com/plentyoffish-architecture\n",
+                  "id": 26
+                },
+                "3": {
+                  "title": "Twitter\nhttp://highscalability.com/scaling-twitter-making-twitter-10000-percent-faster\n",
+                  "id": 27
+                },
+                "4": {
+                  "title": "Google\nhttp://highscalability.com/google-architecture\n",
+                  "id": 29
+                },
+                "5": {
+                  "title": "StackOverflow\nhttp://highscalability.com/blog/2009/8/5/stack-overflow-architecture.html\n",
+                  "id": 31
+                },
+                "6": {
+                  "title": "Facebook\nhttp://highscalability.com/blog/category/facebook\n",
+                  "id": 33
+                },
+                "7": {
+                  "title": "Quora\nhttp://www.bigfastblog.com/quoras-technology-examined\n",
+                  "id": 34
+                },
+                "2.5": {
+                  "title": "Amazon\nhttp://highscalability.com/amazon-architecture\n",
+                  "id": 28
+                },
+                "3.5": {
+                  "title": "Database sharding\nhttp://highscalability.com/blog/2009/8/6/an-unorthodox-approach-to-database-design-the-coming-of-the.html\n",
+                  "id": 30
+                },
+                "4.5": {
+                  "title": "Flickr\nhttp://highscalability.com/flickr-architecture\n",
+                  "id": 32
+                }
+              },
+              "attr": {
+                "style": {}
+              }
+            },
+            "3": {
+              "title": "Additional resources",
+              "id": 35,
+              "ideas": {
+                "1": {
+                  "title": "High Performance Websites Rules\n\nhttp://stevesouders.com/hpws/rules.php\n",
+                  "id": 37
+                },
+                "2": {
+                  "title": "Two-stack CMS\nhttp://martinfowler.com/articles/two-stack-cms",
+                  "id": 44
+                },
+                "3": {
+                  "title": "http://www.aosabook.org/en/distsys.html",
+                  "id": 22,
+                  "attr": {
+                    "style": {}
+                  }
+                },
+                "4": {
+                  "title": "Quora index\n\nhttps://www.quora.com/What-are-the-good-resources-to-learn-about-distributed-scalable-robust-software-architecture-infrastructure-building\n",
+                  "id": 51
+                }
+              },
+              "attr": {
+                "style": {},
+                "collapsed": true
+              }
+            },
+            "4": {
+              "title": "Merbist posts",
+              "id": 45,
+              "ideas": {
+                "1": {
+                  "title": "http://merbist.com/2011/01/18/causality-of-scalability/",
+                  "id": 46
+                },
+                "2": {
+                  "title": "http://merbist.com/2011/01/31/designing-for-scalability/",
+                  "id": 48
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            },
+            "5": {
+              "title": "Books",
+              "id": 60,
+              "ideas": {
+                "1": {
+                  "title": "Scalability rules",
+                  "id": 61
+                },
+                "2": {
+                  "title": "Cloud Architecture Patterns",
+                  "id": 62
+                }
+              },
+              "attr": {
+                "collapsed": true,
+                "style": {}
+              }
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "2": {
+          "title": "Devops",
+          "id": 7,
+          "ideas": {
+            "1": {
+              "title": "Ansible",
+              "id": 8,
+              "ideas": {
+                "1": {
+                  "title": "Book: Ansible - up and running",
+                  "id": 50
+                }
+              }
+            },
+            "2": {
+              "title": "Docker",
+              "id": 9
+            }
+          },
+          "attr": {
+            "style": {}
+          }
+        },
+        "3": {
+          "title": "Instrumentation\n\nhttps://en.wikipedia.org/wiki/Instrumentation_(computer_programming)\n",
+          "id": 10,
+          "ideas": {
+            "1": {
+              "title": "strace",
+              "id": 11
+            },
+            "2": {
+              "title": "tcpdump",
+              "id": 12
+            },
+            "3": {
+              "title": "http://www.brendangregg.com/linuxperf.html",
+              "id": 67
+            }
+          },
+          "attr": {
+            "style": {}
+          }
+        },
+        "4": {
+          "title": "Networking",
+          "id": 14,
+          "ideas": {
+            "1": {
+              "title": "TCP/IP",
+              "id": 15
+            },
+            "2": {
+              "title": "HTTP",
+              "id": 16
+            },
+            "3": {
+              "title": "REST",
+              "id": 17
+            },
+            "4": {
+              "title": "Books",
+              "id": 63,
+              "ideas": {
+                "1": {
+                  "title": "High Performance Browser Networking\nhttp://chimera.labs.oreilly.com/books/1230000000545\n",
+                  "id": 64
+                }
+              }
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "5": {
+          "title": "Load testing",
+          "id": 18,
+          "ideas": {
+            "1": {
+              "title": "Gatling",
+              "id": 19
+            },
+            "2": {
+              "title": "JMeter",
+              "id": 20
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "6": {
+          "title": "General resources",
+          "id": 40,
+          "ideas": {
+            "1": {
+              "title": "Quora index\n\nhttps://www.quora.com/What-are-some-good-resources-for-learning-about-distributed-computing-Why",
+              "id": 41
+            }
+          },
+          "attr": {
+            "style": {},
+            "collapsed": true
+          }
+        },
+        "7": {
+          "title": "Big data",
+          "id": 53
+        },
+        "8": {
+          "title": "Languages",
+          "id": 54,
+          "ideas": {
+            "1": {
+              "title": "Erlang",
+              "id": 55
+            },
+            "2": {
+              "title": "Go",
+              "id": 56
+            },
+            "3": {
+              "title": "Haskell?",
+              "id": 57
+            },
+            "4": {
+              "title": "C?",
+              "id": 58
+            }
+          },
+          "attr": {
+            "collapsed": true,
+            "style": {}
+          }
+        }
+      },
+      "attr": {
+        "style": {}
+      }
+    }
+  },
+  "links": []
+}
