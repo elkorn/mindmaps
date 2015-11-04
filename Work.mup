@@ -131,8 +131,7 @@
             }
           },
           "attr": {
-            "style": {},
-            "collapsed": true
+            "style": {}
           }
         },
         "2": {
@@ -222,11 +221,14 @@
             "2": {
               "title": "JMeter",
               "id": 20
+            },
+            "3": {
+              "title": "Tsung",
+              "id": 68
             }
           },
           "attr": {
-            "style": {},
-            "collapsed": true
+            "style": {}
           }
         },
         "6": {
