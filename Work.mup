@@ -70,11 +70,21 @@
               "ideas": {
                 "1": {
                   "title": "High Performance Websites Rules\n\nhttp://stevesouders.com/hpws/rules.php\n",
-                  "id": 37
+                  "id": 37,
+                  "attr": {
+                    "style": {
+                      "background": "#99cc00"
+                    }
+                  }
                 },
                 "2": {
                   "title": "Two-stack CMS\nhttp://martinfowler.com/articles/two-stack-cms",
-                  "id": 44
+                  "id": 44,
+                  "attr": {
+                    "style": {
+                      "background": "#99cc00"
+                    }
+                  }
                 },
                 "3": {
                   "title": "http://www.aosabook.org/en/distsys.html",
@@ -89,8 +99,7 @@
                 }
               },
               "attr": {
-                "style": {},
-                "collapsed": true
+                "style": {}
               }
             },
             "4": {
@@ -99,16 +108,27 @@
               "ideas": {
                 "1": {
                   "title": "http://merbist.com/2011/01/18/causality-of-scalability/",
-                  "id": 46
+                  "id": 46,
+                  "attr": {
+                    "style": {
+                      "background": "#99cc00"
+                    }
+                  }
                 },
                 "2": {
                   "title": "http://merbist.com/2011/01/31/designing-for-scalability/",
-                  "id": 48
+                  "id": 48,
+                  "attr": {
+                    "style": {
+                      "background": "#99cc00"
+                    }
+                  }
                 }
               },
               "attr": {
-                "collapsed": true,
-                "style": {}
+                "style": {
+                  "background": "#99cc00"
+                }
               }
             },
             "5": {
@@ -241,8 +261,7 @@
             }
           },
           "attr": {
-            "style": {},
-            "collapsed": true
+            "style": {}
           }
         },
         "7": {
@@ -271,7 +290,6 @@
             }
           },
           "attr": {
-            "collapsed": true,
             "style": {}
           }
         }
