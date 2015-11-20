@@ -61,7 +61,8 @@
                 }
               },
               "attr": {
-                "style": {}
+                "style": {},
+                "collapsed": true
               }
             },
             "3": {
@@ -70,21 +71,11 @@
               "ideas": {
                 "1": {
                   "title": "High Performance Websites Rules\n\nhttp://stevesouders.com/hpws/rules.php\n",
-                  "id": 37,
-                  "attr": {
-                    "style": {
-                      "background": "#99cc00"
-                    }
-                  }
+                  "id": 37
                 },
                 "2": {
                   "title": "Two-stack CMS\nhttp://martinfowler.com/articles/two-stack-cms",
-                  "id": 44,
-                  "attr": {
-                    "style": {
-                      "background": "#99cc00"
-                    }
-                  }
+                  "id": 44
                 },
                 "3": {
                   "title": "http://www.aosabook.org/en/distsys.html",
@@ -99,7 +90,8 @@
                 }
               },
               "attr": {
-                "style": {}
+                "style": {},
+                "collapsed": true
               }
             },
             "4": {
@@ -108,27 +100,15 @@
               "ideas": {
                 "1": {
                   "title": "http://merbist.com/2011/01/18/causality-of-scalability/",
-                  "id": 46,
-                  "attr": {
-                    "style": {
-                      "background": "#99cc00"
-                    }
-                  }
+                  "id": 46
                 },
                 "2": {
                   "title": "http://merbist.com/2011/01/31/designing-for-scalability/",
-                  "id": 48,
-                  "attr": {
-                    "style": {
-                      "background": "#99cc00"
-                    }
-                  }
+                  "id": 48
                 }
               },
               "attr": {
-                "style": {
-                  "background": "#99cc00"
-                }
+                "style": {}
               }
             },
             "5": {
@@ -241,14 +221,11 @@
             "2": {
               "title": "JMeter",
               "id": 20
-            },
-            "3": {
-              "title": "Tsung",
-              "id": 68
             }
           },
           "attr": {
-            "style": {}
+            "style": {},
+            "collapsed": true
           }
         },
         "6": {
@@ -256,8 +233,12 @@
           "id": 40,
           "ideas": {
             "1": {
-              "title": "Quora index\n\nhttps://www.quora.com/What-are-some-good-resources-for-learning-about-distributed-computing-Why",
+              "title": "Quora index (distributed computing)\n\nhttps://www.quora.com/What-are-some-good-resources-for-learning-about-distributed-computing-Why",
               "id": 41
+            },
+            "2": {
+              "title": "Quora index (distributed systems)\n\nhttps://www.quora.com/What-are-some-good-blogs-about-distributed-systems\n",
+              "id": 68
             }
           },
           "attr": {
@@ -290,6 +271,7 @@
             }
           },
           "attr": {
+            "collapsed": true,
             "style": {}
           }
         }
